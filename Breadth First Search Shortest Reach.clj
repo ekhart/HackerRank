@@ -71,12 +71,7 @@
 		(Bfs-test-case. nodes-count edges-count nodes-edges start-node)))
 
 (defn get-bfs-test-cases [test-cases-count]
-	(loop [i 0
-    	coll (list)]
-    (if (< i test-cases-count)
-    	(recur (inc i)
-    			(coll-append coll (get-bfs-test-case)))
-    	coll)))
+	(accumulate-coll test-cases-count get-bfs-test-case))
 
 ; (let [test-cases-count (read-int)
 ; 	numbers (line-numbers)
