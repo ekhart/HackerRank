@@ -73,19 +73,6 @@
 (defn get-bfs-test-cases [test-cases-count]
 	(accumulate-coll test-cases-count get-bfs-test-case))
 
-; (let [test-cases-count (read-int)
-; 	numbers (line-numbers)
-; 	nodes-count (get-nodes-count numbers)
-; 	edges-count (get-edges-count numbers)
-; 	nodes-edges (multiline-numbers edges-count)
-; 	start-node (read-int)]
-; 	(println test-cases-count)
-; 	(println numbers)
-; 	(println nodes-count)
-; 	(println edges-count)
-; 	(println nodes-edges)
-; 	(println start-node))
-
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
 	(println test-cases))
