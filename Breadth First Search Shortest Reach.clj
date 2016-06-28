@@ -1,7 +1,7 @@
 (require '[clojure.string :as str])
 
 (defn coll-append [coll item]
-  (concat coll (list item)))
+  (concat coll [item]))
 
 (defn accumulate-coll [number function]
   (loop [i 0
@@ -65,6 +65,10 @@
 
 (defn get-bfs-test-cases [test-cases-count]
 	(accumulate-coll test-cases-count get-bfs-test-case))
+
+; (def breadth-first-search [graph root]
+; 	(let [nodes (accumulate-coll 2 )]
+; 		nodes))
 
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
