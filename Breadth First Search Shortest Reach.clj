@@ -46,6 +46,15 @@
 	nodes-edges 
 	start-node])
 
+;; https://en.wikipedia.org/wiki/Breadth-first_search
+(defrecord Node [id distance parent])
+
+;; http://stackoverflow.com/questions/28487435/why-does-pr-str-double-positive-infinity-return-different-responses
+(def Infinity Double/POSITIVE_INFINITY)
+
+(defn get-node [id]
+	(Node. id Infinity nil))
+
 (defn get-bfs-test-case []
 	(let [numbers (line-numbers)
 		nodes-count (get-nodes-count numbers)
@@ -60,3 +69,5 @@
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
 	(println test-cases))
+
+; (println (get-node 1))
