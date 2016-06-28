@@ -1,7 +1,5 @@
 (require '[clojure.string :as str])
-;; (use '[clojure.string :as str])	;; replace clojure.core/reverse, replace with clojure.string
 
-;; read input number list
 (defn coll-append [coll item]
   (concat coll (list item)))
 
@@ -10,7 +8,7 @@
     	coll (list)]
     (if (< i number)
     	(recur (inc i)
-    			(coll-append coll (function)))
+    		(coll-append coll (function)))
     	coll)))
 
 (defn readed-lines [n]
@@ -41,20 +39,6 @@
 
 (defn get-edges-count [numbers]
 	(nth numbers 1))
-
-;; class test-case
-; nodes-count
-; edges-count
-; nodes-edges
-; start-node
-
-;; http://clojuredocs.org/clojure.core/struct
-; Structs are becoming obsolete. Use records instead. See defrecord
-; (defstruct bfs-test-case 
-; 	:nodes-count
-; 	:edges-count
-; 	:nodes-edges
-; 	:start-node)
 
 (defrecord Bfs-test-case 
 	[nodes-count 
