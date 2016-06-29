@@ -146,6 +146,9 @@
 (let [edges (get-test-case-edges [[1 2] [3 4]])]
 	(println edges))
 
+(defn calculate-shortest-distances [nodes-count edge start-node]
+	nil)
+
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
 	(perform-test-cases test-cases))
