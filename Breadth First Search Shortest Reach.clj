@@ -127,6 +127,24 @@
 
 ; II.
 ; Solution: https://gist.github.com/EDFward/4e7fd44ed019b62bb0d6 (python)
+(defrecord Edge [source destination])
+
+(defn get-2-dir-edges [node-edge]
+  (conj
+  	[(Edge. (node-edge 0) (node-edge 1))]
+  	(Edge. (node-edge 1) (node-edge 0))))
+
+
+(defn get-edges [nodes-edges]
+  (loop [i 0
+    	coll (list)]
+    (if (< i (count nodes-edges))
+    	(recur (inc i)
+    		(concat coll (get-2-dir-edges (nodes-edges i))))
+    	coll)))
+
+(let [edges (get-edges [[1 2] [3 4]])]
+	(println edges))
 
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
