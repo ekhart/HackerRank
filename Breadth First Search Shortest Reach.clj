@@ -13,7 +13,7 @@
 
 (defn readed-lines [n]
   (accumulate-coll n read-line))
-      
+
 (defn parseInt [n]
 	(Integer/parseInt n))
 
@@ -40,10 +40,10 @@
 (defn get-edges-count [numbers]
 	(nth numbers 1))
 
-(defrecord Bfs-test-case 
-	[nodes-count 
-	edges-count 
-	nodes-edges 
+(defrecord Bfs-test-case
+	[nodes-count
+	edges-count
+	nodes-edges
 	start-node])
 
 ;; https://en.wikipedia.org/wiki/Breadth-first_search
@@ -66,12 +66,51 @@
 (defn get-bfs-test-cases [test-cases-count]
 	(accumulate-coll test-cases-count get-bfs-test-case))
 
+; how to implement graph ?
+(defn get-graph [test-case]
+	test-case)
+
+(defn perform-test-case [test-case]
+	(let [graph (get-graph test-case)
+		root (get-node (:start-node test-case))]
+		(println graph)
+		(println root)))
+
+; http://stackoverflow.com/questions/7314413/is-there-standard-foreach-function-in-clojure
+(defn perform-test-cases [test-cases]
+	(doseq [test-case test-cases]
+		(perform-test-case test-case)))
+
+; I.
+; https://en.wikipedia.org/wiki/Breadth-first_search
+;  1 Breadth-First-Search(Graph, root):
+;  2
+;  3     for each node n in Graph:
+;  4         n.distance = INFINITY
+;  5         n.parent = NIL
+;  6
+;  7     create empty queue Q
+;  8
+;  9     root.distance = 0
+; 10     Q.enqueue(root)
+; 11
+; 12     while Q is not empty:
+; 13
+; 14         current = Q.dequeue()
+; 15
+; 16         for each node n that is adjacent to current:
+; 17             if n.distance == INFINITY:
+; 18                 n.distance = current.distance + 1
+; 19                 n.parent = current
+; 20                 Q.enqueue(n)
 ; (def breadth-first-search [graph root]
-; 	(let [nodes (accumulate-coll 2 )]
-; 		nodes))
+; 	(doseq [node graph]))
+
+; II.
+; Solution: https://gist.github.com/EDFward/4e7fd44ed019b62bb0d6 (python)
 
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]
-	(println test-cases))
+	(perform-test-cases test-cases))
 
 ; (println (get-node 1))
