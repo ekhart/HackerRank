@@ -81,6 +81,25 @@
 	(doseq [test-case test-cases]
 		(perform-test-case test-case)))
 
+; http://stackoverflow.com/questions/3136453/immutable-queue-in-clojure
+; queue
+(def queue list)
+(def enqueue conj)
+(def dequeue peek)
+; also peek (get head), empty?
+
+; tests
+; (let [q (queue)
+; 	q2 (enqueue q 1)]
+; 	(println q)
+; 	(println (enqueue q 1))
+; 	(println q)
+; 	(println q2)
+; 	(println (dequeue q))
+; 	(println q2)
+; 	(println (empty? q))
+; 	(println (empty? q2)))
+
 ; I.
 ; https://en.wikipedia.org/wiki/Breadth-first_search
 ;  1 Breadth-First-Search(Graph, root):
