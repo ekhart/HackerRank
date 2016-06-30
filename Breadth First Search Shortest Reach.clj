@@ -1,3 +1,4 @@
+(ns bfs)
 (require '[clojure.string :as str])
 
 (defn coll-append [coll item]
@@ -89,6 +90,9 @@
 ; also peek (get head), empty?
 
 ; tests
+; TODO: how to TDD in clojure?
+; http://www.bing.com/videos/search?q=how+to+tdd+in+clojure&view=detail&mid=4EA69960CC6B651045284EA69960CC6B65104528&FORM=VIRE
+
 ; (let [q (queue)
 ; 	q2 (enqueue q 1)]
 ; 	(println q)
@@ -126,7 +130,8 @@
 ; 	(doseq [node graph]))
 
 ; II.
-; Solution: https://gist.github.com/EDFward/4e7fd44ed019b62bb0d6 (python)
+; Solution:  (python)
+; https://gist.github.com/EDFward/4e7fd44ed019b62bb0d6
 (defrecord Edge [source destination])
 
 (defn get-edge [node-edge a b]
@@ -147,7 +152,7 @@
 	(println edges))
 
 (defn calculate-shortest-distances [nodes-count edge start-node]
-	nil)
+	(let [dist (repeat (inc nodes-count) Infinity)]))
 
 (let [test-cases-count (read-int)
 	test-cases (get-bfs-test-cases test-cases-count)]

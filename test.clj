@@ -31,3 +31,4 @@
       h)))
 
 (height 4)
+(println (height 4))
