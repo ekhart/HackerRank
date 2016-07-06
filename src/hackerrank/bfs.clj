@@ -1,4 +1,5 @@
-(ns bfs)
+(ns hackerrank.bfs)
+
 (require '[clojure.string :as str])
 
 (defn coll-append [coll item]
@@ -138,7 +139,7 @@
 	(Edge. (node-edge a) (node-edge b)))
 
 (defn get-2-dir-edges [node-edge]
-  (conj [(get-edge 0 1)] (get-edge 1 0)))
+  (conj [(get-edge node-edge 0 1)] (get-edge node-edge 1 0)))
 
 (defn get-test-case-edges [nodes-edges]
   (loop [i 0
@@ -154,8 +155,8 @@
 (defn calculate-shortest-distances [nodes-count edge start-node]
 	(let [dist (repeat (inc nodes-count) Infinity)]))
 
-(let [test-cases-count (read-int)
-	test-cases (get-bfs-test-cases test-cases-count)]
-	(perform-test-cases test-cases))
+; (let [test-cases-count (read-int)
+; 	test-cases (get-bfs-test-cases test-cases-count)]
+; 	(perform-test-cases test-cases))
 
 ; (println (get-node 1))
