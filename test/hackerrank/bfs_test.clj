@@ -7,5 +7,9 @@
 ;     (is (= 0 1))))
 
 (deftest parseInt-test
-  (testing "FIXME, I fail."
+  (testing "parseInt"
     (is (= (parseInt "1") 1))))
+
+; (deftest get-edge-test
+; 	(testing "get-edge"
+; 		(is ())))
