@@ -12,6 +12,7 @@
 ; (println (get-current-path))
 
 (def test-file-path "resources\\test-case.txt")
+(def test-file-line-current-index 0)
 ; (println (slurp test-file-path))
 
 ; http://stackoverflow.com/questions/36579613/how-to-read-n-lines-from-a-file-in-clojure
@@ -20,8 +21,22 @@
 	(with-open [rdr (io/reader filename)]
 		(doall (take n (line-seq rdr)))))
 
+(defn file-lines [filename]
+	(with-open [rdr (io/reader filename)]
+		(let [lines (line-seq rdr)]
+			; (println "lines " lines)
+			; (println "count " (count lines))
+			(doall (take (count lines) lines)))))
+; (println (file-lines test-file-path))
+
+(defn file-line-at [filename at]
+	(with-open [rdr (io/reader filename)]
+		(nth (line-seq rdr) at)))
+; (println (file-line-at test-file-path 0))
+; (println (file-line-at test-file-path 1))
+
 (defn read-line []
-	(lines 1 test-file-path))
+	(file-line-at test-file-path test-file-line-current-index))
 
 (defn get-test-case-number []
 	(parseInt (read-line)))
