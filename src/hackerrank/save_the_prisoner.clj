@@ -12,7 +12,7 @@
 ; (println (get-current-path))
 
 (def test-file-path "resources\\test-case.txt")
-(def test-file-line-current-index 0)
+(def ^:dynamic test-file-line-current-index 0)
 ; (println (slurp test-file-path))
 
 ; http://stackoverflow.com/questions/36579613/how-to-read-n-lines-from-a-file-in-clojure
@@ -41,8 +41,11 @@
 (defn get-test-case-number []
 	(parseInt (read-line)))
 
-
 (defn test-read-line [file])
 
 (defn save-the-prisoner [t]
 	nil)
+
+(println test-file-line-current-index)
+(set! test-file-line-current-index 1)
+(println test-file-line-current-index)
