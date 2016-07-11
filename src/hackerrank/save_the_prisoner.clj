@@ -12,7 +12,7 @@
 ; (println (get-current-path))
 
 (def test-file-path "resources\\test-case.txt")
-(def ^:dynamic test-file-line-current-index 0)
+(def test-file-line-current-index (atom 0))
 ; (println (slurp test-file-path))
 
 ; http://stackoverflow.com/questions/36579613/how-to-read-n-lines-from-a-file-in-clojure
@@ -46,6 +46,8 @@
 (defn save-the-prisoner [t]
 	nil)
 
-(println test-file-line-current-index)
-(set! test-file-line-current-index 1)
+(println @test-file-line-current-index)		; get value of atom
+(println test-file-line-current-index)		; get atom
+; https://en.wikibooks.org/wiki/Clojure_Programming/By_Example
+(swap! test-file-line-current-index inc)	; mutating permanent state variable
 (println test-file-line-current-index)
