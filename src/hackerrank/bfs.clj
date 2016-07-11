@@ -139,7 +139,7 @@
 	(Edge. (node-edge a) (node-edge b)))
 
 (defn get-2-dir-edges [node-edge]
-  (conj [(get-edge node-edge 0 1)] (get-edge node-edge 1 0)))
+  [(get-edge node-edge 0 1) (get-edge node-edge 1 0)])
 
 (defn get-test-case-edges [nodes-edges]
   (loop [i 0
