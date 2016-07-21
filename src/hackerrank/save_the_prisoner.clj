@@ -1,5 +1,5 @@
-(ns hackerrank.save-the-prisoner)
-(require '[clojure.java.io :as io])
+(ns hackerrank.save-the-prisoner
+	(:require [clojure.java.io :as io]))
 
 ;; https://www.hackerrank.com/challenges/save-the-prisoner
 
@@ -36,7 +36,7 @@
 ; (println (file-line-at test-file-path 1))
 
 (defn read-line []
-	(file-line-at test-file-path test-file-line-current-index))
+	(file-line-at test-file-path @test-file-line-current-index))
 
 (defn get-test-case-number []
 	(parseInt (read-line)))
@@ -46,8 +46,8 @@
 (defn save-the-prisoner [t]
 	nil)
 
-(println @test-file-line-current-index)		; get value of atom
-(println test-file-line-current-index)		; get atom
-; https://en.wikibooks.org/wiki/Clojure_Programming/By_Example
-(swap! test-file-line-current-index inc)	; mutating permanent state variable
-(println test-file-line-current-index)
+; (println @test-file-line-current-index)		; get value of atom
+; (println test-file-line-current-index)		; get atom
+; ; https://en.wikibooks.org/wiki/Clojure_Programming/By_Example
+; (swap! test-file-line-current-index inc)	; mutating permanent state variable
+; (println test-file-line-current-index)
