@@ -25,3 +25,17 @@
 ;; the same as
 ;; (require ['clojure.string :as 'string])
 ;; (string/capitalize "foo")
+
+;; multiple aliases
+;; (require '[clojure.string :as str] '[clojure.test :as tst])
+;; (string/capitalize "foo")
+;; (tst/is (= 1 2))
+
+;; same prefix
+;; (require '(clojure string test))
+;; (string/capitalize "foo")
+;; (test/is (= 1 2))
+;; must use vectors for libspecs
+;; (require '(clojure [string :as string] test))
+;; (string/join [1 2 3])
+
