@@ -6,7 +6,7 @@
 
 ;;; The baseline: require
 ;; witout require it should throw Exception
-(clojure.string/split to-split #",")
+;; (clojure.string/split to-split #",")
 
 ;; now should work
 ;; (require 'clojure.string)
@@ -14,6 +14,14 @@
 
 ;; mutliple requires
 ;; every time new REPL - needed require
-(require 'clojure.string 'clojure.test)
-(clojure.string/join " " splitted)
-(clojure.test/is (= 1 2))
+;; (require 'clojure.string 'clojure.test)
+;; (clojure.string/join " " splitted)
+;; (clojure.test/is (= 1 2))
+
+; clojure.string map to folder %classpath%/clojure/string.clj
+
+;; alias
+;; (require '[clojure.string :as string])
+;; the same as
+;; (require ['clojure.string :as 'string])
+;; (string/capitalize "foo")
