@@ -39,3 +39,6 @@
 ;; (require '(clojure [string :as string] test))
 ;; (string/join [1 2 3])
 
+;; verbose
+(require '[clojure.string :as string] :verbose)
+(require '[clojure.test :as test] :verbose)
