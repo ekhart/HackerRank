@@ -44,5 +44,11 @@
 ;; (require '[clojure.test :as test] :verbose)
 
 ;; use
-(use 'clojure.string)
+;; (use 'clojure.string)
+;; (split "a,b,c" #",")
+;; replaces other already loaded functions
+
+;; use only
+(use '[clojure.string :only [split]])
 (split "a,b,c" #",")
+;; use only function we needed
