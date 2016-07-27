@@ -79,7 +79,12 @@
 ;; (Date.)
 
 ;; import list
-(import '(java.util Date GregorianCalendar))
-Date
-GregorianCalendar
+;; (import '(java.util Date GregorianCalendar))
+;; Date
+;; GregorianCalendar
 ;; import works for any classes, including defrecords, deftypes
+
+;; (require 'stuff)
+;; (import 'stuff.BigWidget)
+;; (BigWidget.)
+;; require needed, then import
