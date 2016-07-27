@@ -43,6 +43,8 @@
 ;; (require '[clojure.string :as string] :verbose)
 ;; (require '[clojure.test :as test] :verbose)
 
+;; Using other namespaces’ code as though it’s yours: use
+
 ;; use
 ;; (use 'clojure.string)
 ;; (split "a,b,c" #",")
@@ -60,6 +62,11 @@
 ;; best: use only with :only
 
 ;; use rename
-(use '[clojure.string :rename {replace str-replace, reverse str-reverse}])
-(str-reverse "foobar")
-(reverse "foobar")
+;; (use '[clojure.string :rename {replace str-replace, reverse str-reverse}])
+;; (str-reverse "foobar")
+;; (reverse "foobar")
+
+;; use :as
+(use '[clojure.string :as str :only [join split]])
+(str/replace "foobar" "f" "p")
+;; same as require, so dont use it better
