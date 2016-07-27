@@ -91,5 +91,13 @@
 
 ;; Bringing it all together: ns
 ;; ns is actually used often then require, use & import
-(ns my-great-project.core)
+;; (ns my-great-project.core)
 ;; gives namespace
+
+;; complex ns use
+(ns my-great-project.core
+  "This namespace is CRAZY!"
+  (:use [clojure.string :only [split join]] :reload)
+  (:require clojure.stactrace [clojure.test :as test]
+    (clojure template walk) :verbose)
+  (:import (java.util Date GregorianCalendar)))
