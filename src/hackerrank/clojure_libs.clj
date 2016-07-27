@@ -74,6 +74,12 @@
 ;; Working with Java and deftypes/defrecords: import
 
 ;; import
-(java.util.Date.)
-(import 'java.util.Date)
-(Date.)
+;; (java.util.Date.)
+;; (import 'java.util.Date)
+;; (Date.)
+
+;; import list
+(import '(java.util Date GregorianCalendar))
+Date
+GregorianCalendar
+;; import works for any classes, including defrecords, deftypes
