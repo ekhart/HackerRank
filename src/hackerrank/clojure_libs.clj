@@ -49,6 +49,12 @@
 ;; replaces other already loaded functions
 
 ;; use only
-(use '[clojure.string :only [split]])
-(split "a,b,c" #",")
+;; (use '[clojure.string :only [split]])
+;; (split "a,b,c" #",")
 ;; use only function we needed
+
+;; use exclude
+(use '[clojure.string :exclude [replace reverse]])
+(split "a,b,c" #",")
+;; eliminates shadowing of name colissions
+;; best: use only with :only
