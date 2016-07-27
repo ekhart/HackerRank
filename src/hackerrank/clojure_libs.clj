@@ -88,3 +88,8 @@
 ;; (import 'stuff.BigWidget)
 ;; (BigWidget.)
 ;; require needed, then import
+
+;; Bringing it all together: ns
+;; ns is actually used often then require, use & import
+(ns my-great-project.core)
+;; gives namespace
