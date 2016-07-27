@@ -67,6 +67,13 @@
 ;; (reverse "foobar")
 
 ;; use :as
-(use '[clojure.string :as str :only [join split]])
-(str/replace "foobar" "f" "p")
+;; (use '[clojure.string :as str :only [join split]])
+;; (str/replace "foobar" "f" "p")
 ;; same as require, so dont use it better
+
+;; Working with Java and deftypes/defrecords: import
+
+;; import
+(java.util.Date.)
+(import 'java.util.Date)
+(Date.)
