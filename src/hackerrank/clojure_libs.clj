@@ -54,7 +54,12 @@
 ;; use only function we needed
 
 ;; use exclude
-(use '[clojure.string :exclude [replace reverse]])
-(split "a,b,c" #",")
+;; (use '[clojure.string :exclude [replace reverse]])
+;; (split "a,b,c" #",")
 ;; eliminates shadowing of name colissions
 ;; best: use only with :only
+
+;; use rename
+(use '[clojure.string :rename {replace str-replace, reverse str-reverse}])
+(str-reverse "foobar")
+(reverse "foobar")
