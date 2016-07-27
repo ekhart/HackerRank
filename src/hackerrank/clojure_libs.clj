@@ -40,5 +40,9 @@
 ;; (string/join [1 2 3])
 
 ;; verbose
-(require '[clojure.string :as string] :verbose)
-(require '[clojure.test :as test] :verbose)
+;; (require '[clojure.string :as string] :verbose)
+;; (require '[clojure.test :as test] :verbose)
+
+;; use
+(use 'clojure.string)
+(split "a,b,c" #",")
