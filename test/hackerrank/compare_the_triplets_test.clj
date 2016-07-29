@@ -1,6 +1,6 @@
 (ns hackerrank.compare-the-triplets-test
   (:require [clojure.test :refer :all]
-  			[hackerrank.save-the-prisoner :refer :all]
+            [hackerrank.save-the-prisoner :refer :all]
             [hackerrank.compare-the-triplets :refer :all]))
 
 (deftest parseInt-test
