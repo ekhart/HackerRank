@@ -38,3 +38,8 @@
 
   (println @alice @bob)
 )
+
+;; 2016-07-29 17:04
+;; 1/7 points
+;; o think of others test cases
+;; o make it more testable
