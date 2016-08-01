@@ -5,39 +5,46 @@
 
 ; https://www.hackerrank.com/challenges/compare-the-triplets
 
+(defn parseInt [n]
+	(Integer/parseInt n))
 
-(def max-points 100)
-(def alice (atom 0))
-(def bob (atom 0))
+(defn compare-triplets [first-line second-line]
+  (let [a0_temp first-line
+        a0_t (split a0_temp #"\s+")
+        a0 (parseInt (a0_t 0))
+        a1 (parseInt (a0_t 1))
+        a2 (parseInt (a0_t 2))
 
-;; https://clojuredocs.org/clojure.core/swap!
-;; https://clojuredocs.org/clojure.core/cond
-(defn score [a b]
-  (cond (and (> (compare a b) 0) (< @alice max-points)) (swap! alice inc)
-        (and (< (compare a b) 0) (< @bob max-points)) (swap! bob inc)))
+        b0_temp second-line
+        b0_t (split b0_temp #"\s+")
+        b0 (parseInt (b0_t 0))
+        b1 (parseInt (b0_t 1))
+        b2 (parseInt (b0_t 2))
 
-(let [a0_temp "5 6 7" ; (read-line)
-      a0_t (split a0_temp #"\s+")
-      a0 (Integer/parseInt (a0_t 0))
-      a1 (Integer/parseInt (a0_t 1))
-      a2 (Integer/parseInt (a0_t 2))
+        max-points 100
+        alice (atom 0)
+        bob (atom 0)]
 
-      b0_temp "3 6 10" ;(read-line)
-      b0_t (split b0_temp #"\s+")
-      b0 (Integer/parseInt (b0_t 0))
-      b1 (Integer/parseInt (b0_t 1))
-      b2 (Integer/parseInt (b0_t 2))]
+    (defn score [a b]
+      ;; https://clojuredocs.org/clojure.core/cond
+      (defn inc-points [person]
+        (swap! person inc))
 
-  ;; https://clojuredocs.org/clojure.string/join
-  (println (join " " [a0 a1 a2]))
-  (println (join " " [b0 b1 b2]))
+      ;; https://clojuredocs.org/clojure.core/swap!
+      (cond (and (> (compare a b) 0) (< @alice max-points)) (swap! alice inc)
+            (and (< (compare a b) 0) (< @bob max-points)) (swap! bob inc)))
 
-  (score a0 b0)
-  (score a1 b1)
-  (score a2 b2)
+    ;; https://clojuredocs.org/clojure.string/join
+    (println (join " " [a0 a1 a2]))
+    (println (join " " [b0 b1 b2]))
 
-  (println @alice @bob)
-)
+    (score a0 b0)
+    (score a1 b1)
+    (score a2 b2)
+
+    (join " " [@alice @bob])))
+
+(println (compare-triplets "5 6 7" "3 6 10"))
 
 ;; 2016-07-29 17:04
 ;; 1/7 points
