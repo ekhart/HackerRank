@@ -37,16 +37,18 @@
             (and (< (compare a b) 0) (< @bob max-points)) (inc-points bob)))
 
     ;; https://clojuredocs.org/clojure.string/join
-    (println (join " " [a0 a1 a2]))
-    (println (join " " [b0 b1 b2]))
+;;     (println "first-line" (join " " [a0 a1 a2]))
+;;     (println "second-line" (join " " [b0 b1 b2]))
 
     (score a0 b0)
     (score a1 b1)
     (score a2 b2)
 
+;;     (println "result" (join " " [@alice @bob]))
+
     (join " " [@alice @bob])))
 
-(println (compare-triplets "5 6 7" "3 6 10"))
+;; (println (compare-triplets "5 6 7" "3 6 10"))
 
 ;; 2016-07-29 17:04
 ;; 1/7 points
