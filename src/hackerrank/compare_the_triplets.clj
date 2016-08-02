@@ -1,6 +1,6 @@
 (ns hackerrank.compare-the-triplets
-	(:require [clojure.java.io :as io]
-            [hackerrank.save-the-prisoner :refer :all])
+	(:require [clojure.java.io :as io])
+;;             [hackerrank.save-the-prisoner :refer :all])
   (:use [clojure.string :only (split join)]))
 
 ; https://www.hackerrank.com/challenges/compare-the-triplets
@@ -22,6 +22,8 @@
         b2 (parseInt (b0_t 2))
 
         max-points 100
+;;         http://stackoverflow.com/questions/940712/redefining-a-letd-variable-in-clojure-loop
+;;         locals never change, but you could use atom
         alice (atom 0)
         bob (atom 0)]
 
@@ -31,8 +33,8 @@
         (swap! person inc))
 
       ;; https://clojuredocs.org/clojure.core/swap!
-      (cond (and (> (compare a b) 0) (< @alice max-points)) (swap! alice inc)
-            (and (< (compare a b) 0) (< @bob max-points)) (swap! bob inc)))
+      (cond (and (> (compare a b) 0) (< @alice max-points)) (inc-points alice)
+            (and (< (compare a b) 0) (< @bob max-points)) (inc-points bob)))
 
     ;; https://clojuredocs.org/clojure.string/join
     (println (join " " [a0 a1 a2]))
