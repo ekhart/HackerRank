@@ -33,6 +33,9 @@
         (swap! person inc))
 
       ;; https://clojuredocs.org/clojure.core/swap!
+
+;;       (println "(compare" a b ") =" (compare a b))
+
       (cond (and (> (compare a b) 0) (< @alice max-points)) (inc-points alice)
             (and (< (compare a b) 0) (< @bob max-points)) (inc-points bob)))
 
@@ -49,6 +52,8 @@
     (join " " [@alice @bob])))
 
 ;; (println (compare-triplets "5 6 7" "3 6 10"))
+;; for hackerrank
+;; (println (compare-triplets (read-line) (read-line)))
 
 ;; 2016-07-29 17:04
 ;; 1/7 points
