@@ -43,8 +43,8 @@
 (defn pm-am-time [time]
   (let [hours (hour time)
         time24 (cond
-          (and (pm? time) (not (= hours 12))) (hour-time (+ hours 12) time)
-          (and (am? time) (= hours 12)) (hour-time 0 time)
+          (and (pm? time) (not= hours 12)) (hour-time (+ hours 12) time)
+          (and (am? time) (= hours 12)) (hour-time "00" time)
           :else time)]
     (remove-am-pm time24)))
 
