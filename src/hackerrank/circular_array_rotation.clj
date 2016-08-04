@@ -17,8 +17,8 @@
 
 (defn circular-array-rotation [first-line second-line]
   (let [sl (get-numbers-in-line first-line)
-        n (sl 0)
-        k (sl 1)
-        q (sl 2)]
+        n (nth sl 0)
+        k (nth sl 1)
+        q (nth sl 2)]
 
   (join " " [n k q])))
