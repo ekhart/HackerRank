@@ -15,8 +15,8 @@
   (map parseInt (splitted-line line)))
 
 
-(defn circular-array-rotation [input]
-  (let [sl (splitted-line input)
+(defn circular-array-rotation [first-line second-line]
+  (let [sl (get-numbers-in-line first-line)
         n (sl 0)
         k (sl 1)
         q (sl 2)]
