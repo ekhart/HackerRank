@@ -19,7 +19,8 @@
     (is (= (splitted-line first-line) ["3" "2" "3"])))
 
   (testing "get-numbers-in-line"
-    (is (= (get-numbers-in-line first-line) [3 2 3])))
+    (is (= (get-numbers-in-line first-line) [3 2 3]))
+    (is (= (get-numbers-in-line second-line) [1 2 3])))
 
   (testing "circular-array-rotation"
     (is (= (circular-array-rotation first-line second-line) "3 2 3"))

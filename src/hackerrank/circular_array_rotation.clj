@@ -19,6 +19,7 @@
   (let [sl (get-numbers-in-line first-line)
         n (nth sl 0)
         k (nth sl 1)
-        q (nth sl 2)]
+        q (nth sl 2)
+        array (get-numbers-in-line second-line)]
 
   (join " " [n k q])))
