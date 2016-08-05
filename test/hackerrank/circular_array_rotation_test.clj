@@ -26,9 +26,13 @@
 
   (testing "circular-array-rotation"
     (is (= (circular-array-rotation first-line second-line) "3 2 3"))
-    (is (= (circular-array-rotation first-line second-line) "3 2 3")))
+    (is (= (circular-array-rotation sample-string-input) "3 2 3")))
 
   (testing "prompt-from-string"
     (is (= (prompt-from-string rest-of-lines) "answer 0")))
+
+  (testing "rotate"
+    (is (= (rotate-right [1 2 3]) [3 1 2]))
+    (is (= (rotate-right [1 2 3] 2) [2 3 1])))
 
 )
