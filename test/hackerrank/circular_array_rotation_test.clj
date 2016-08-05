@@ -25,7 +25,6 @@
     (is (= (get-numbers-in-line second-line) [1 2 3])))
 
   (testing "circular-array-rotation"
-    (is (= (circular-array-rotation first-line second-line) "3 2 3"))
     (is (= (circular-array-rotation sample-string-input) "3 2 3")))
 
   (testing "prompt-from-string"
