@@ -36,13 +36,36 @@
     (prompt "How old are you?")))
 
 
-(defn circular-array-rotation [first-line second-line]
-  (let [sl (get-numbers-in-line first-line)
+(defn circular-array-rotation
+  ([]
+   (let [sl (get-numbers-in-line (read-line))
+        n (nth sl 0)
+        k (nth sl 1)
+        q (nth sl 2)
+        array (get-numbers-in-line (read-line))]
+
+    (join " " [n k q])))
+
+  ([string-input]
+   (with-in-str string-input
+     (circular-array-rotation)))
+
+  ([first-line second-line]
+   (let [sl (get-numbers-in-line first-line)
         n (nth sl 0)
         k (nth sl 1)
         q (nth sl 2)
         array (get-numbers-in-line second-line)]
 
-    (join " " [n k q])))
+    (join " " [n k q]))))
+
+
+(def sample-string-input "3 2 3\n1 2 3\n0\n1\n2")
 
 ;; (defn circular-array-rotation-from-string-input []
+;;   (with-in-str sample-string-input
+;;     (println (circular-array-rotation))))
+
+;; (circular-array-rotation-from-string-input)
+
+(circular-array-rotation sample-string-input)
