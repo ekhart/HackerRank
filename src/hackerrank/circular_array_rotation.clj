@@ -14,6 +14,27 @@
 (defn get-numbers-in-line [line]
   (map parseInt (splitted-line line)))
 
+(defn list-append [coll item]
+  (concat coll (list item)))
+
+(defn lines [n]
+  (loop [i 0
+    	coll (list)]
+    (if (< i n)
+    	(recur (inc i)
+    			(list-append coll (read-line)))
+    	coll)))
+
+(defn prompt [question]
+  (let [answer (str "answer " (read-line))]
+    (println question)
+    (println answer)
+    answer))
+
+(defn prompt-from-string [input]
+  (with-in-str input
+    (prompt "How old are you?")))
+
 
 (defn circular-array-rotation [first-line second-line]
   (let [sl (get-numbers-in-line first-line)
@@ -22,4 +43,6 @@
         q (nth sl 2)
         array (get-numbers-in-line second-line)]
 
-  (join " " [n k q])))
+    (join " " [n k q])))
+
+;; (defn circular-array-rotation-from-string-input []

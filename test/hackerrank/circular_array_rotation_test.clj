@@ -9,6 +9,7 @@
 
 (def first-line "3 2 3")
 (def second-line "1 2 3")
+(def rest-of-lines "0\n1\n2")
 
 (deftest circular-array-rotation-test
 
@@ -25,4 +26,8 @@
   (testing "circular-array-rotation"
     (is (= (circular-array-rotation first-line second-line) "3 2 3"))
   )
+
+  (testing "prompt-from-string"
+    (is (= (prompt-from-string rest-of-lines) "answer 0")))
+
 )
