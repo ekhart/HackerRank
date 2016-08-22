@@ -19,6 +19,12 @@
     			(list-append coll (read-line)))
     	coll)))
 
+(defn rotate [string n]
+  (join
+    (lazy-cat
+      (drop n string)
+      (take n string))))
+
 (defn rotate-string
   ([]
    (let [t (parseInt (read-line))

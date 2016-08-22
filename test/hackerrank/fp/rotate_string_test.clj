@@ -12,6 +12,9 @@
   (testing "parseInt"
     (is (= (parseInt "1") 1)))
 
+  (testing "rotate"
+    (is (= (rotate "abc" 1) "bca")))
+
   (testing "rotate-string-test"
     (is (= (rotate-string test-string-input) ["abc" "abcde" "abab" "aaa" "z"])))
 
