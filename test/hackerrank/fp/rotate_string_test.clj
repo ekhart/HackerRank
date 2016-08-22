@@ -5,7 +5,7 @@
 ; run test in bash for git/cygwin
 ; lein.bat test hackerrank.fp.rotate-string-test
 
-(def sample-string-input "5\nabc\nabcde\nabab\naaa\nz")
+(def test-string-input "5\nabc\nabcde\nabab\naaa\nz")
 
 (deftest rotate-string-test
 
@@ -13,6 +13,6 @@
     (is (= (parseInt "1") 1)))
 
   (testing "rotate-string-test"
-    (is (= (rotate-string sample-string-input) 5)))
+    (is (= (rotate-string test-string-input) ["abc" "abcde" "abab" "aaa" "z"])))
 
 )
