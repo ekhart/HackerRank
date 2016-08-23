@@ -34,11 +34,17 @@
   ([]
    (let [t (parseInt (read-line))
          strings (lines t)]
+
      (doseq [string strings]
-       (let [output (string-rotation string t)]
-         (println output)
-         output)))
+       (println (join " " (string-rotation string t))))
+
+     (map #(string-rotation % t) strings)))
 
   ([string-input]
    (with-in-str string-input
      (rotate-string))))
+
+;; uncomment after copy-paste to hackerrank buffer
+;; (rotate-string)
+
+;; 2016-08-23 14:20 working solution 1/12 points ;d

@@ -23,6 +23,6 @@
     (is (= (string-rotation "z" 5) ["z"])))
 
   (testing "rotate-string-test"
-    (is (= (rotate-string test-string-input) ["abc" "abcde" "abab" "aaa" "z"])))
+    (is (= (rotate-string test-string-input) ["bca" "cab" "abc"])))
 
 )
