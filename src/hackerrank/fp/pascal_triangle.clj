@@ -19,6 +19,10 @@
       (factorial r)
       (factorial (- n r)))))
 
+(defn pascal-triangle-triangle [n]
+  [[1]])
+
+
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
