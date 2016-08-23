@@ -28,7 +28,7 @@
 (defn string-rotation [string n]
   (map
     #(rotate string %)
-    (range 1 (inc (min (count string) n)))))
+    (range 1 (inc (count string)))))
 
 (defn rotate-string
   ([]
