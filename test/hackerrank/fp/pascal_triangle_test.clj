@@ -31,7 +31,10 @@
     (is-equal (pascal-triangle-value 2 2) 1))
 
   (testing "pascal-triangle-row"
-    (is (= (pascal-triangle-row 1) [1])))
+    (is (= (pascal-triangle-row 0) [1]))
+    (is (= (pascal-triangle-row 1) [1 1]))
+    (is (= (pascal-triangle-row 2) [1 2 1]))
+    (is (= (pascal-triangle-row 3) [1 3 3 1])))
 
   (testing "pascal-triangle-triangle"
     (is (= (pascal-triangle-triangle 1) [[1]])))
