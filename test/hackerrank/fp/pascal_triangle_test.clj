@@ -23,7 +23,7 @@
     (is-equal (factorial 4) 24))
 
   (testing "pascal-triangle-value"
-    (is-equal (pascal-triangle-value 0 0)))
+    (is-equal (pascal-triangle-value 0 0) 1))
 
   (testing "pascal-triangle"
     (is-equal (pascal-triangle test-string-input) 4))

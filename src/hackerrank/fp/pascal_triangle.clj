@@ -12,6 +12,9 @@
 (defn factorial [n]
   (reduce * (range 1 (inc n))))
 
+(defn pascal-triangle-value [n r]
+  1)
+
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
