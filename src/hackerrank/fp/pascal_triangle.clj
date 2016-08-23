@@ -20,7 +20,7 @@
       (factorial (- n r)))))
 
 (defn pascal-triangle-triangle [n]
-  [(range 1 (inc n))])
+  (map identity (range 1 (inc n))))
 
 
 (defn pascal-triangle
