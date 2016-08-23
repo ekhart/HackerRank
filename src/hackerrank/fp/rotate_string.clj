@@ -25,6 +25,11 @@
       (drop n string)
       (take n string))))
 
+(defn string-rotation [string n]
+  (map
+    #(rotate string %)
+    (range 1 (inc (min (count string) n)))))
+
 (defn rotate-string
   ([]
    (let [t (parseInt (read-line))

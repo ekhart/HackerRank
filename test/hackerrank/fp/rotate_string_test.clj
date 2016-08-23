@@ -15,6 +15,13 @@
   (testing "rotate"
     (is (= (rotate "abc" 1) "bca")))
 
+  (testing "string rotation"
+    (is (= (string-rotation "abc" 5) ["bca" "cab" "abc"]))
+    (is (= (string-rotation "abcde" 5) ["bcdea" "cdeab" "deabc" "eabcd" "abcde"]))
+    (is (= (string-rotation "abab" 5) ["baba" "abab" "baba" "abab"]))
+    (is (= (string-rotation "aaa" 5) ["aaa" "aaa" "aaa"]))
+    (is (= (string-rotation "z" 5) ["z"])))
+
   (testing "rotate-string-test"
     (is (= (rotate-string test-string-input) ["abc" "abcde" "abab" "aaa" "z"])))
 
