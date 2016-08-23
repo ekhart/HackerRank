@@ -20,7 +20,7 @@
       (factorial (- n r)))))
 
 (defn pascal-triangle-triangle [n]
-  [[1]])
+  [(range 1 (inc n))])
 
 
 (defn pascal-triangle
