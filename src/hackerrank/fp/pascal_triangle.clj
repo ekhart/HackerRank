@@ -13,7 +13,11 @@
   (reduce * (range 1 (inc n))))
 
 (defn pascal-triangle-value [n r]
-  1)
+  (/
+    (factorial n)
+    (*
+      (factorial r)
+      (factorial (- n r)))))
 
 (defn pascal-triangle
   ([]
