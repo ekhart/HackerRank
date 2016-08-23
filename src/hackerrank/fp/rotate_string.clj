@@ -34,7 +34,10 @@
   ([]
    (let [t (parseInt (read-line))
          strings (lines t)]
-     strings))
+     (doseq [string strings]
+       (let [output (string-rotation string t)]
+         (println output)
+         output)))
 
   ([string-input]
    (with-in-str string-input
