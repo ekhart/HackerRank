@@ -10,7 +10,7 @@
   (Integer/parseInt n))
 
 (defn factorial [n]
-  1)
+  (reduce * (range 1 (inc n))))
 
 (defn pascal-triangle
   ([]

@@ -16,10 +16,12 @@
     (is-equal (parseInt "1") 1))
 
   (testing "factorial"
-    (is (= (factorial 1) 1)))
-;;     (is (= (
+    (is-equal (factorial 1) 1)
+    (is-equal (factorial 2) 2)
+    (is-equal (factorial 3) 6)
+    (is-equal (factorial 4) 24))
 
   (testing "pascal-triangle"
-    (is (= (pascal-triangle test-string-input) 4)))
+    (is-equal (pascal-triangle test-string-input) 4))
 
 )
