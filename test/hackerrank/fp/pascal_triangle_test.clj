@@ -37,7 +37,14 @@
     (is (= (pascal-triangle-row 3) [1 3 3 1])))
 
   (testing "pascal-triangle-triangle"
-    (is (= (pascal-triangle-triangle 1) [[1]])))
+    (is (= (pascal-triangle-triangle 1) [[1]]))
+    (is (= (pascal-triangle-triangle 2) [[1] [1 1]]))
+    (is (= (pascal-triangle-triangle 3) [[1] [1 1] [1 2 1]]))
+    (is (= (pascal-triangle-triangle 4) [[1] [1 1] [1 2 1] [1 3 3 1]])))
+
+  (testing "pascal-triangle-print"
+    (is (= (pascal-triangle-print [[1]]) "1"))
+    (is (= (pascal-triangle-print [[1] [1 1]]) "1\n1 1")))
 
   (testing "pascal-triangle"
     (is-equal (pascal-triangle test-string-input) 4))

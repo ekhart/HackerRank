@@ -29,7 +29,8 @@
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
-     k))
+
+     )))
 
   ([string-input]
    (with-in-str string-input
