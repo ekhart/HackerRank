@@ -10,6 +10,7 @@
 (defn is-equal [a b]
   (is (= a b)))
 
+
 (deftest pascal-triangle-test
 
   (testing "parseInt"
@@ -20,6 +21,9 @@
     (is-equal (factorial 2) 2)
     (is-equal (factorial 3) 6)
     (is-equal (factorial 4) 24))
+
+  (testing "pascal-triangle-value"
+    (is-equal (pascal-triangle-value 0 0)))
 
   (testing "pascal-triangle"
     (is-equal (pascal-triangle test-string-input) 4))
