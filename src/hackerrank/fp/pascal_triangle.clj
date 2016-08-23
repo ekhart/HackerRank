@@ -19,6 +19,9 @@
       (factorial r)
       (factorial (- n r)))))
 
+(defn pascal-triangle-row [r]
+  (map #(pascal-triangle-value % r) (range r)))
+
 (defn pascal-triangle-triangle [n]
   (map identity (range 1 (inc n))))
 
