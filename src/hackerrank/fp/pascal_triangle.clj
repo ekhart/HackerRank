@@ -25,12 +25,14 @@
 (defn pascal-triangle-triangle [n]
   (map pascal-triangle-row (range n)))
 
+(defn pascal-triangle-print [coll]
+  (reduce #(str (join " " %) "\n") coll))
 
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
 
-     )))
+     ))
 
   ([string-input]
    (with-in-str string-input
