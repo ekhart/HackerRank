@@ -7,10 +7,17 @@
 
 (def test-string-input "4")
 
+(defn is-equal [a b]
+  (is (= a b)))
+
 (deftest pascal-triangle-test
 
   (testing "parseInt"
-    (is (= (parseInt "1") 1)))
+    (is-equal (parseInt "1") 1))
+
+  (testing "factorial"
+    (is (= (factorial 1) 1)))
+;;     (is (= (
 
   (testing "pascal-triangle"
     (is (= (pascal-triangle test-string-input) 4)))

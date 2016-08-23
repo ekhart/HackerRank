@@ -9,6 +9,9 @@
 (defn parseInt [n]
   (Integer/parseInt n))
 
+(defn factorial [n]
+  1)
+
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
