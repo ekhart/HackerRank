@@ -37,8 +37,9 @@
 (defn pascal-triangle
   ([]
    (let [k (parseInt (read-line))]
-
-     ))
+     (println
+       (pascal-triangle-print
+         (pascal-triangle-triangle k)))))
 
   ([string-input]
    (with-in-str string-input

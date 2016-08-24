@@ -6,7 +6,7 @@
 ; run test in bash for git/cygwin
 ; lein.bat test hackerrank.fp.pascal-triangle-test
 
-(def test-string-input "4")
+(def test-string-input "5")
 
 (defn is-equal [a b]
   (is (= a b)))       ; but this dont show proper file line
