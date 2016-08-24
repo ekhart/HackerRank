@@ -53,7 +53,8 @@
   (testing "pascal-triangle-print"
     (is (= (pascal-triangle-print [[1]]) "1"))
     (is (= (pascal-triangle-print [[1] [1 1]]) "1\n1 1"))
-    (is (= (pascal-triangle-print [[1] [1 1] [1 2 1]]) "1\n1 1\n1 2 1")))
+    (is (= (pascal-triangle-print [[1] [1 1] [1 2 1]]) "1\n1 1\n1 2 1"))
+    (is (= (pascal-triangle-print [[1] [1 1] [1 2 1] [1 3 3 1]]) "1\n1 1\n1 2 1\n1 3 3 1")))
 
 
   (testing "pascal-triangle"
