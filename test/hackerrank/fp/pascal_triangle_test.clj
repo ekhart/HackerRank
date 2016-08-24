@@ -1,11 +1,13 @@
 (ns hackerrank.fp.pascal-triangle-test
   (:require [clojure.test :refer :all]
-            [hackerrank.fp.pascal-triangle :refer :all]))
+            [hackerrank.fp.pascal-triangle :refer :all])
+  (:use [clojure.string :only (split join)]))
 
 ; run test in bash for git/cygwin
 ; lein.bat test hackerrank.fp.pascal-triangle-test
 
 (def test-string-input "4")
+(def print-test-case (list 1 (list 1 1)))
 
 (defn is-equal [a b]
   (is (= a b)))       ; but this dont show proper file line
@@ -42,9 +44,17 @@
     (is (= (pascal-triangle-triangle 3) [[1] [1 1] [1 2 1]]))
     (is (= (pascal-triangle-triangle 4) [[1] [1 1] [1 2 1] [1 3 3 1]])))
 
-  (testing "pascal-triangle-print"
-    (is (= (pascal-triangle-print [[1]]) "1"))
-    (is (= (pascal-triangle-print [[1] [1 1]]) "1\n1 1")))
+  (testing "list"
+    (is (= (list 1) [1]))
+    (is (= (list (list 1)) [[1]])))
+
+  (testing "reduce"
+    (is (= (reduce #(str (join " " %1) "\n" (join " " %2) "\n") [[1 2] [3 4]]) "12")))
+
+;;   (testing "pascal-triangle-print"
+;;     (is (= (pascal-triangle-print [[1]]) "1"))
+;;     (is (= (pascal-triangle-print print-test-case) "1\n1 1")))
+
 
   (testing "pascal-triangle"
     (is-equal (pascal-triangle test-string-input) 4))

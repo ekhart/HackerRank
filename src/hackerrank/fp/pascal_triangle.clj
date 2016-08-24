@@ -26,7 +26,9 @@
   (map pascal-triangle-row (range n)))
 
 (defn pascal-triangle-print [coll]
-  (reduce #(str (join " " %) "\n") coll))
+  (reduce #(str (join " " %1) "\n") "" coll))
+
+;; (with-out-str (println "this shoud return as a string"))
 
 (defn pascal-triangle
   ([]
