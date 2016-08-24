@@ -3,7 +3,7 @@
 
 (ns hackerrank.fp.pascal-triangle
 	(:require [clojure.java.io :as io])
-  (:use [clojure.string :only (split join)]))
+  (:use [clojure.string :only (split join trim)]))
 
 
 (defn parseInt [n]
@@ -26,7 +26,11 @@
   (map pascal-triangle-row (range n)))
 
 (defn pascal-triangle-print [coll]
-  (reduce #(str (join " " %1) "\n") "" coll))
+  (trim
+    (reduce
+      #(str %1 (trim (join " " %2)) "\n")
+      ""
+      coll)))
 
 ;; (with-out-str (println "this shoud return as a string"))
 

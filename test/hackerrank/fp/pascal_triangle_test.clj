@@ -7,7 +7,6 @@
 ; lein.bat test hackerrank.fp.pascal-triangle-test
 
 (def test-string-input "4")
-(def print-test-case (list 1 (list 1 1)))
 
 (defn is-equal [a b]
   (is (= a b)))       ; but this dont show proper file line
@@ -49,14 +48,15 @@
     (is (= (list (list 1)) [[1]])))
 
   (testing "reduce"
-    (is (= (reduce #(str (join " " %1) "\n" (join " " %2) "\n") [[1 2] [3 4]]) "12")))
+    (is (= (reduce #(str (join " " %1) "\n" (join " " %2) "\n") [[1 2] [3 4]]) "1 2\n3 4\n")))
 
-;;   (testing "pascal-triangle-print"
-;;     (is (= (pascal-triangle-print [[1]]) "1"))
-;;     (is (= (pascal-triangle-print print-test-case) "1\n1 1")))
+  (testing "pascal-triangle-print"
+    (is (= (pascal-triangle-print [[1]]) "1"))
+    (is (= (pascal-triangle-print [[1] [1 1]]) "1\n1 1"))
+    (is (= (pascal-triangle-print [[1] [1 1] [1 2 1]]) "1\n1 1\n1 2 1")))
 
 
   (testing "pascal-triangle"
-    (is-equal (pascal-triangle test-string-input) 4))
+    (is-equal (pascal-triangle test-string-input) nil))
 
 )
