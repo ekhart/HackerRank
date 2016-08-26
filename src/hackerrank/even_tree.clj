@@ -15,7 +15,8 @@
 
 (defn even-tree
   ([]
-   (let [n (parseInt (read-line))]
+   (let [first-line-numbers (numbers (read-line))
+         n (nth first-line-numbers 0)]
      (println n)
      n))
 
