@@ -8,8 +8,16 @@
 (defn parseInt [n]
   (Integer/parseInt n))
 
+
+(defn numbers [string]
+  (map parseInt (split string #" ")))
+
+
 (defn even-tree
-  ([])
+  ([]
+   (let [n (parseInt (read-line))]
+     (println n)
+     n))
 
   ([string-input]
    (with-in-str string-input

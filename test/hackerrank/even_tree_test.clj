@@ -22,7 +22,10 @@
   (testing "parseInt"
     (is (= (parseInt "1") 1)))
 
+  (testing "numbers"
+    (is (= (numbers "10 9") [10 9])))
+
   (testing "even-tree"
-    (is (= (even-tree test-string-input) nil)))
+    (is (= (even-tree test-string-input) 10)))
 
 )
