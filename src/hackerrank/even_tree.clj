@@ -12,6 +12,23 @@
 (defn numbers [string]
   (map parseInt (split string #" ")))
 
+(definterface INode
+  (get-left [])
+  (get-right [])
+  (insert [k v]))
+
+(deftype Node
+  [key
+   val
+   ^:volatile-mutable ^INode left
+   ^:volatile-mutable ^INode right]
+
+  INode
+  (get-left [_] left)
+  (get-right [_] right)
+
+  (insert [this k v]))
+
 
 (defn even-tree
   ([]
@@ -28,3 +45,7 @@
 
 ;; uncomment after copy-paste to hackerrank buffer
 ;; (even-tree)
+
+;; tree-seq
+;; http://macromancy.com/2014/04/09/data-structures-clojure-trees.html
+;; http://www.ibm.com/developerworks/library/j-treevisit/
