@@ -13,8 +13,8 @@
   (map parseInt (split string #" ")))
 
 (definterface INode
-  (get-left [])
-  (get-right [])
+  (getLeft [])
+  (getRight [])
   (insert [k v]))
 
 (deftype Node
@@ -24,8 +24,8 @@
    ^:volatile-mutable ^INode right]
 
   INode
-  (get-left [_] left)
-  (get-right [_] right)
+  (getLeft [_] left)
+  (getRight [_] right)
 
   (insert [this k v]))
 
@@ -49,3 +49,4 @@
 ;; tree-seq
 ;; http://macromancy.com/2014/04/09/data-structures-clojure-trees.html
 ;; http://www.ibm.com/developerworks/library/j-treevisit/
+;; https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf - 6.2 Binary Representations
