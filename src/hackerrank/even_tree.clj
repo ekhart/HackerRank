@@ -56,3 +56,4 @@
 ;; http://macromancy.com/2014/04/09/data-structures-clojure-trees.html
 ;; http://www.ibm.com/developerworks/library/j-treevisit/
 ;; https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf - 6.2 Binary Representations
+;; http://stackoverflow.com/questions/1787708/representing-a-tree-in-clojure
