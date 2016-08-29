@@ -26,6 +26,6 @@
     (is (= (numbers "10 9") [10 9])))
 
   (testing "even-tree"
-    (is (= (even-tree test-string-input) 10)))
+    (is (= (even-tree test-string-input) 9)))
 
 )

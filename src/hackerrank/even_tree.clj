@@ -16,9 +16,11 @@
 (defn even-tree
   ([]
    (let [first-line-numbers (numbers (read-line))
-         n (nth first-line-numbers 0)]
+         n (nth first-line-numbers 0)
+         m (nth first-line-numbers 1)]
      (println n)
-     n))
+     (println m)
+     m))
 
   ([string-input]
    (with-in-str string-input
