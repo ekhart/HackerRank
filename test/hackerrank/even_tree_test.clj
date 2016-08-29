@@ -25,6 +25,12 @@
   (testing "numbers"
     (is (= (numbers "10 9") [10 9])))
 
+  (testing "tree"
+    (is (= (make-tree) '())))
+
+  (testing "tree-add-edge"
+    (is (= (tree-add-edge (make-tree) 2 1) '(1 (2)))))
+
   (testing "even-tree"
     (is (= (even-tree test-string-input) 9)))
 

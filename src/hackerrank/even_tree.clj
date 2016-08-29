@@ -12,6 +12,12 @@
 (defn numbers [string]
   (map parseInt (split string #" ")))
 
+(defn make-tree []
+  '())
+
+(defn tree-add-edge [tree a b]
+  (cons b (cons (cons a nil) nil)))
+
 (definterface INode
   (getLeft [])
   (getRight [])
