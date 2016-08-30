@@ -16,7 +16,8 @@
   '())
 
 (defn tree-add-edge [tree a b]
-  (cons b (cons (cons a nil) nil)))
+  ; (cons b (cons (cons a nil) nil))
+  (cons tree (cons (cons a nil) nil)))
 
 (definterface INode
   (getLeft [])
@@ -57,3 +58,7 @@
 ;; http://www.ibm.com/developerworks/library/j-treevisit/
 ;; https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf - 6.2 Binary Representations
 ;; http://stackoverflow.com/questions/1787708/representing-a-tree-in-clojure
+
+;; see
+(cons 'a (cons 'b (cons 'c nil)))
+(cons 'a (cons (cons 'b nil) nil))
