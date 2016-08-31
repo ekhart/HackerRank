@@ -99,3 +99,8 @@ t
 (cons (first t) (cons (cons 'a nil) nil))
 
 ; (sort [[3] 1 [2]])
+
+(sort  #(or (> (last %1) (last %2))
+             (and (= (last %1) (last %2))
+                  (< (first %1) (first %2))))
+       (shuffle '((3) 1 (2))))
