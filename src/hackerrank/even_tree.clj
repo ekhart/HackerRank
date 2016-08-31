@@ -16,8 +16,8 @@
   '())
 
 (defn tree-add-edge [tree a b]
-  ; (cons b (cons (cons a nil) nil))
-  (cons tree (cons (cons a nil) nil)))
+  (if (empty? tree)
+    (cons b (cons (cons a nil) nil))))
 
 (definterface INode
   (getLeft [])
@@ -62,3 +62,16 @@
 ;; see
 (cons 'a (cons 'b (cons 'c nil)))
 (cons 'a (cons (cons 'b nil) nil))
+
+(cons 'a nil)
+(cons '() nil)
+; (cons '() 'a)   ; error
+
+(empty? '())
+(empty? '(a))
+
+(defn tree-add [tree a b]
+  (if (empty? tree)
+    (cons a nil)))
+
+(tree-add '() 'a 'b)
