@@ -17,7 +17,11 @@
 
 (defn tree-add-edge [tree a b]
   (if (empty? tree)
-    (cons b (cons (cons a nil) nil))))
+    (cons b (cons (cons a nil) nil))
+    (conj tree (cons a nil))))
+; :else
+; find [traverse tree  root with b value
+; add to it a child
 
 (definterface INode
   (getLeft [])
@@ -75,3 +79,23 @@
     (cons a nil)))
 
 (tree-add '() 'a 'b)
+
+(def t (tree-add-edge (make-tree) 2 1))
+(tree-add-edge t 2 1)
+(first t) ; car
+(second t) ; cdr
+
+(tree-seq seq? identity t)
+; (map first (tree-seq next rest t))
+
+
+(require ['clojure.walk :as 'walk])
+(walk/postwalk #(do (println "visiting:" %) %) t)
+(walk/postwalk #(if (number? %) (println "visiting:" %)) t)
+(walk/postwalk #(if (and (number? %) (= % 1)) (do (println %) (cons % (cons 'x nil)))) t)
+t
+
+(cons t '(a))
+(cons (first t) (cons (cons 'a nil) nil))
+
+; (sort [[3] 1 [2]])

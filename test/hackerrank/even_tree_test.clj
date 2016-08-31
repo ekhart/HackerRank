@@ -16,6 +16,7 @@
 8 6
 9 8
 10 8")
+(def simple-tree '(1 (2)))
 
 (deftest even-tree-test
 
@@ -29,7 +30,8 @@
     (is (= (make-tree) '())))
 
   (testing "tree-add-edge"
-    (is (= (tree-add-edge (make-tree) 2 1) '(1 (2)))))
+    (is (= (tree-add-edge (make-tree) 2 1) simple-tree))
+    (is (= (tree-add-edge simple-tree 3 1) '(1 (2) (3)))))
 
   (testing "even-tree"
     (is (= (even-tree test-string-input) 9)))
