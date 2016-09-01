@@ -15,10 +15,19 @@
 (defn make-tree []
   '())
 
+(defn sort-tree-fn [a b]
+  ; (println "compare" a b "number?" (number? a) "list?" (list? b))
+  (cond (and (number? a) (list? b)) -1
+        (and (list? a) (number? b)) 1
+        (and (list? a) (list? b)) (compare (first a) (first b))
+        :else 0))
+
+(println (sort sort-tree-fn '((3) 1 (2))))
+
 (defn tree-add-edge [tree a b]
   (if (empty? tree)
     (cons b (cons (cons a nil) nil))
-    (conj tree (cons a nil))))
+    (sort sort-tree-fn (conj tree (cons a nil)))))
 ; :else
 ; find [traverse tree  root with b value
 ; add to it a child
@@ -98,9 +107,13 @@ t
 (cons t '(a))
 (cons (first t) (cons (cons 'a nil) nil))
 
-; (sort [[3] 1 [2]])
+(defn sort-tree-fn [a b]
+  ; (println "compare" a b "number?" (number? a) "list?" (list? b))
+  (cond (and (number? a) (list? b)) -1
+        (and (list? a) (number? b)) 1
+        (and (list? a) (list? b)) (compare (first a) (first b))
+        :else 0))
 
-(sort  #(or (> (last %1) (last %2))
-             (and (= (last %1) (last %2))
-                  (< (first %1) (first %2))))
-       (shuffle '((3) 1 (2))))
+(println (sort sort-tree-fn '((3) 1 (2))))
+
+(list? '(3))
