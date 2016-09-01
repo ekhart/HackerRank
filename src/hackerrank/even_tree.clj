@@ -22,12 +22,11 @@
         (and (list? a) (list? b)) (compare (first a) (first b))
         :else 0))
 
-(println (sort sort-tree-fn '((3) 1 (2))))
+;; (println (sort sort-tree-fn '((3) 1 (2))))
 
 (defn tree-add-edge [tree a b]
-  (if (empty? tree)
-    (cons b (cons (cons a nil) nil))
-    (sort sort-tree-fn (conj tree (cons a nil)))))
+  (cond (empty? tree) (cons b (cons (cons a nil) nil))
+        (= (first tree) b) (sort sort-tree-fn (conj tree (cons a nil)))))
 ; :else
 ; find [traverse tree  root with b value
 ; add to it a child
@@ -99,9 +98,9 @@
 
 
 (require ['clojure.walk :as 'walk])
-(walk/postwalk #(do (println "visiting:" %) %) t)
-(walk/postwalk #(if (number? %) (println "visiting:" %)) t)
-(walk/postwalk #(if (and (number? %) (= % 1)) (do (println %) (cons % (cons 'x nil)))) t)
+;; (walk/postwalk #(do (println "visiting:" %) %) t)
+;; (walk/postwalk #(if (number? %) (println "visiting:" %)) t)
+;; (walk/postwalk #(if (and (number? %) (= % 1)) (do (println %) (cons % (cons 'x nil)))) t)
 t
 
 (cons t '(a))
@@ -114,6 +113,6 @@ t
         (and (list? a) (list? b)) (compare (first a) (first b))
         :else 0))
 
-(println (sort sort-tree-fn '((3) 1 (2))))
+;; (println (sort sort-tree-fn '((3) 1 (2))))
 
 (list? '(3))

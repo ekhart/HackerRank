@@ -17,6 +17,7 @@
 9 8
 10 8")
 (def simple-tree '(1 (2)))
+(def more-complex-tree '(1 (2) (3)))
 
 (deftest even-tree-test
 
@@ -31,7 +32,8 @@
 
   (testing "tree-add-edge"
     (is (= (tree-add-edge (make-tree) 2 1) simple-tree))
-    (is (= (tree-add-edge simple-tree 3 1) '(1 (2) (3)))))
+    (is (= (tree-add-edge simple-tree 3 1) more-complex-tree))
+    (is (= (tree-add-edge more-complex-tree 6 1) '(1 (2) (3) (6)))))
 
   (testing "even-tree"
     (is (= (even-tree test-string-input) 9)))
