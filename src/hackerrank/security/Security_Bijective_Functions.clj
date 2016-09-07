@@ -7,7 +7,7 @@
   (:use [clojure.string :only (split join trim)]))
 
 
-(def input "3\n1 2 3")
+(def input "3\n2 2 2 3 3")
 
 ;; (with-in-str input
 ;;   (let [scan (Scanner. *in*)
@@ -19,6 +19,16 @@
 
 (with-in-str input
   (let [n (parseInt (read-line))
-        numbers (map parseInt (split (read-line) #" "))]
-    (println n)
-    (println numbers)))
+        numbers (map parseInt (split (read-line) #" "))
+        numbers-set (set numbers)]
+
+;;     (println n)
+;;     (println numbers)
+;;     (println numbers-set)
+;;     (println (count numbers-set))
+
+    (println
+      (if (= n (count numbers-set)) "YES" "NO"))))
+
+;; translation to clojure
+;; o python solutiion
