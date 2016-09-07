@@ -1,3 +1,6 @@
+;; Security Bijective Functions
+;; https://www.hackerrank.com/challenges/security-bijective-functions/forum
+
 (ns hackerrank.security.security-bijective-functions
   (:import java.util.Scanner)
   (:require [clojure.java.io :as io])
@@ -15,5 +18,7 @@
   (Integer/parseInt string))
 
 (with-in-str input
-  (let [n (parseInt (read-line))]
-    (println n)))
+  (let [n (parseInt (read-line))
+        numbers (map parseInt (split (read-line) #" "))]
+    (println n)
+    (println numbers)))
