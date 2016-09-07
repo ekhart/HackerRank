@@ -6,7 +6,14 @@
 
 (def input "3\n1 2 3")
 
+;; (with-in-str input
+;;   (let [scan (Scanner. *in*)
+;;         n (. scan nextInt)]
+;;     (println n)))
+
+(defn parseInt [string]
+  (Integer/parseInt string))
+
 (with-in-str input
-  (let [scan (Scanner. *in*)
-        n (. scan nextInt)]
+  (let [n (parseInt (read-line))]
     (println n)))
