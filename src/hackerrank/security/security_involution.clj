@@ -12,7 +12,12 @@
 
 (with-in-str input
   (let [n (parseInt (read-line))
-        numbers (concat [0](map parseInt (split (read-line) #" ")))]
+        numbers (concat [0](map parseInt (split (read-line) #" ")))
+        numbers2 (for [x numbers] (nth numbers (dec x)))]
+
+      n
+      numbers
+;;       (println numbers2)
 
       (doseq [i (range 1 (inc n))]
 ;;         (println i (nth numbers i))
