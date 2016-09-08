@@ -40,7 +40,7 @@ zipped
     (def zipped (into {} (map hash-map before after)))
 
    (let [n (trim (read-line))]
-        (apply str (map zipped (seq "982")))))
+        (apply str (map zipped (seq n)))))
 
   ([input]
    (with-in-str input
