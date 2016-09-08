@@ -12,13 +12,14 @@
 
 (with-in-str input
   (let [n (parseInt (read-line))
-        numbers (concat [0](map parseInt (split (read-line) #" ")))
+        numbers (concat (map parseInt (split (read-line) #" ")))
         numbers2 (for [x numbers] (nth numbers (dec x)))]
 
-      n
-      numbers
-;;       (println numbers2)
+    ;;     (println n)
+;;     (println numbers)
+;;     (println numbers2)
+;;     (println (range 1 (inc n)))
 
-      (doseq [i (range 1 (inc n))]
-;;         (println i (nth numbers i))
-        (println (nth numbers (nth numbers i))))))
+    (println (if (= numbers2 (range 1 (inc n))) "YES" "NO")))
+
+)
