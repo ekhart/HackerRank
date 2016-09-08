@@ -9,18 +9,21 @@
   (Integer/parseInt string))
 
 ;; solution idea:
+;; shift after n times
 
 (defn key-spaces
   ([]
-    (def before (seq "0123456789"))
-    (def after (seq "1234567890"))
-    (def zipped (into {} (map hash-map before after)))
-    (let [message (trim (read-line))
-          e (parseInt (read-line))]
-      (apply str (map zipped (seq message)))))
+   (let [message (trim (read-line))
+         e (parseInt (read-line))
+
+         before (seq "0123456789")
+         after (take (count before) (drop e (cycle before)))
+         zipped (into {} (map hash-map before after))]
+
+      (join (map zipped (seq message)))))
 
   ([input]
    (with-in-str input
      (key-spaces))))
 
-(key-spaces "391\n2")
+(key-spaces "391\n3")
