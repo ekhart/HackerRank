@@ -28,6 +28,9 @@ JHQSU XFXBQ")
   (testing "alphabet"
     (is (= alphabet "abcdefghijklmnopqrstuvwxyz")))
 
+  (testing "remove-chars"
+    (is (= (remove-chars "sport" alphabet-seq) "abcdefghijklmnquvwxyz")))
+
   (testing "keyword-table"
     (is (= (keyword-table "sport") ["sport", "abcde", "fghij", "klmnp", "quvwx", "yz"])))
 

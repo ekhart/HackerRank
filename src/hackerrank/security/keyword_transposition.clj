@@ -3,7 +3,8 @@
 
 (ns hackerrank.security.keyword-transposition
   (:require [clojure.java.io :as io])
-  (:use [clojure.string :only (split join trim)]))
+  (:use [clojure.string :only (split join trim) :as str]
+        [clojure.set :as set]))
 
 (defn parseInt [string]
   (Integer/parseInt string))
@@ -28,15 +29,21 @@
 ;; +) have a fun with encrytion and confirm the encrytion with decryttion
 
 (defn distinct-string [string]
-  (join (distinct string)))
+  (str/join (distinct string)))
 
 ;; "abcdefghijklmnopqrstuvwxyz"
 (def alphabet-seq (map char (range (int \a) (inc (int \z)))))
-(def alphabet (join alphabet-seq))
+(def alphabet (str/join alphabet-seq))
 
 (defn keyword-table [string]
   (let [s (distinct-string string)]
-    (conj (map join (partition (count s) alphabet-seq)) s)))
+    (conj (map str/join (partition (count s) alphabet-seq)) s)))
+
+(defn remove-chars [to from]
+  (let [a (set (seq to))
+        b (set (seq from))]
+    (set/difference b a)))
+
 
 (defn keyword-transposition
 
@@ -51,7 +58,13 @@
 ;; uncomment for hackerrank:
 ;; (println (keyword-transposition))
 
-(map join (partition (count "sport") alphabet-seq))
+(map str/join (partition (count "sport") alphabet-seq))
 
 (let [s (distinct-string "sport")]
     (conj (partition (count s) alphabet-seq)) s)
+
+;; (remove-chars "sport" "abcdsport")
+;; (seq "sport")
+;; (seq "abcdsport")
+;; (set/difference (set (seq "abcdsport")) (set (seq "sport")))
+;; (str/join (set/difference (set (seq "abcdsport")) (set (seq "sport"))))
