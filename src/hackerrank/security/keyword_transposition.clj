@@ -30,6 +30,8 @@
 (defn distinct-string [string]
   (join (distinct string)))
 
+(def alphabet (join (map char (range 97 123))))
+
 (defn keyword-transposition
 
   ([]

@@ -23,6 +23,9 @@ JHQSU XFXBQ")
   (testing "distinct"
     (is (= (distinct-string "aabc") "abc")))
 
+  (testing "alphabet"
+    (is (= alphabet "abcdefghijklmnopqrstuvwxyz")))
+
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
 
