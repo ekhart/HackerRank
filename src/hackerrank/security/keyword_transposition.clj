@@ -14,7 +14,7 @@
 
   ([]
     (let [n (parseInt (read-line))]
-        (factorial n)))
+        n))
 
   ([input]
    (with-in-str input
