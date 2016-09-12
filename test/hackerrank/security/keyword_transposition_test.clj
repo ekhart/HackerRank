@@ -20,6 +20,9 @@ JHQSU XFXBQ")
 
 (deftest keyword-transposition-test
 
+  (testing "distinct"
+    (is (= (distinct-string "aabc") "abc")))
+
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
 
