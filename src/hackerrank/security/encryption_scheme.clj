@@ -11,12 +11,18 @@
 ;; solution idea:
 ; find factorial
 
+(defn factorial [n]
+  (reduce * (range 1 (inc n))))
+
 (defn encryption-scheme
 
   ([]
-    (let [n (trim (read-line))]
-        ))
+    (let [n (parseInt (read-line))]
+        (factorial n)))
 
   ([input]
    (with-in-str input
      (encryption-scheme))))
+
+;; uncomment for hackerrank:
+;; (println (encryption-scheme))
