@@ -30,7 +30,8 @@
 (defn distinct-string [string]
   (join (distinct string)))
 
-(def alphabet (join (map char (range (int \a) (int \z)))))
+;; "abcdefghijklmnopqrstuvwxyz"
+(def alphabet (join (map char (range (int \a) (inc (int \z))))))
 
 (defn keyword-transposition
 

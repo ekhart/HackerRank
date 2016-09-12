@@ -7,6 +7,7 @@
 ; lein test hackerrank.security.keyword-transposition-test
 ; in cygwin:
 ; lein.bat test hackerrank.security.keyword-transposition-test
+; !l -> run last command starting with l (lein ... in this case)
 
 (def test-input "2
 SPORT
@@ -21,7 +22,8 @@ JHQSU XFXBQ")
 (deftest keyword-transposition-test
 
   (testing "distinct"
-    (is (= (distinct-string "aabc") "abc")))
+    (is (= (distinct-string "aabc") "abc"))
+    (is (= (distinct-string "SECRET") "SECRT")))
 
   (testing "alphabet"
     (is (= alphabet "abcdefghijklmnopqrstuvwxyz")))
