@@ -28,6 +28,9 @@ JHQSU XFXBQ")
   (testing "alphabet"
     (is (= alphabet "abcdefghijklmnopqrstuvwxyz")))
 
+  (testing "keyword-table"
+    (is (= (keyword-table "sport") ["sport", "abcde", "fghij", "klmnp", "quvwx", "yz"])))
+
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
 

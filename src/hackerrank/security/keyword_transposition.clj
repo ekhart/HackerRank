@@ -31,7 +31,12 @@
   (join (distinct string)))
 
 ;; "abcdefghijklmnopqrstuvwxyz"
-(def alphabet (join (map char (range (int \a) (inc (int \z))))))
+(def alphabet-seq (map char (range (int \a) (inc (int \z)))))
+(def alphabet (join alphabet-seq))
+
+(defn keyword-table [string]
+  (let [s (distinct-string string)]
+    (conj (map join (partition (count s) alphabet-seq)) s)))
 
 (defn keyword-transposition
 
@@ -45,3 +50,8 @@
 
 ;; uncomment for hackerrank:
 ;; (println (keyword-transposition))
+
+(map join (partition (count "sport") alphabet-seq))
+
+(let [s (distinct-string "sport")]
+    (conj (partition (count s) alphabet-seq)) s)
