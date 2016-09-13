@@ -46,6 +46,7 @@
 
 (defn transpose-table [table]
   (defn transpose-row [table i]
+;;     (join (map #(if (< (count %) (count (first table))) "" (nth % i)) table)))
     (join (map #(if (>= i (count %)) "" (nth % i)) table)))
 
   (map #(transpose-row table %) (range (count (first table)))))

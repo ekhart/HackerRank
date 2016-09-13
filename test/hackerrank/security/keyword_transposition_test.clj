@@ -16,6 +16,7 @@ SECRET
 JHQSU XFXBQ")
 
 (def table ["sport", "abcde", "fghij", "klmnq", "uvwxy", "z"])
+(def hackerrank-table ["secrt" "abdfg" "hijkl" "mnopq" "uvwxy" "z"])
 
 (deftest parseInt-test
   (testing "parseInt"
@@ -31,13 +32,16 @@ JHQSU XFXBQ")
     (is (= alphabet "abcdefghijklmnopqrstuvwxyz")))
 
   (testing "remove-chars"
-    (is (= (remove-chars "sport" alphabet-seq) "abcdefghijklmnquvwxyz")))
+    (is (= (remove-chars "sport" alphabet-seq) "abcdefghijklmnquvwxyz"))
+    (is (= (remove-chars "secret" alphabet-seq) "abdfghijklmnopquvwxyz")))
 
   (testing "keyword-table"
-    (is (= (keyword-table "sport") table)))
+    (is (= (keyword-table "sport") table))
+    (is (= (keyword-table "secret") hackerrank-table)))
 
   (testing "transpose-table"
-    (is (= (transpose-table table) ["safku" "pbglv" "ochmw" "rdinx" "tejqy"])))
+    (is (= (transpose-table table) ["safkuz" "pbglv" "ochmw" "rdinx" "tejqy"]))
+    (is (= (transpose-table hackerrank-table) ["sahmuz" "ebinv" "cdjow" "rfkpx" "tglqy"])))
 
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
