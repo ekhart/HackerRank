@@ -45,7 +45,10 @@
     (conj (map str/join (partition-all (count s) (remove-chars string alphabet-seq))) s)))
 
 (defn transpose-table [table]
-  table)
+  (defn transpose-row [table i]
+    (join (map #(if (>= i (count %)) "" (nth % i)) table)))
+
+  (map #(transpose-row table %) (range (count (first table)))))
 
 (defn keyword-transposition
 
@@ -60,13 +63,33 @@
 ;; uncomment for hackerrank:
 ;; (println (keyword-transposition))
 
-(map str/join (partition (count "sport") alphabet-seq))
 
-(let [s (distinct-string "sport")]
-    (conj (partition (count s) alphabet-seq)) s)
+
+
+;; (map str/join (partition (count "sport") alphabet-seq))
+;; (let [s (distinct-string "sport")]
+;;     (conj (partition (count s) alphabet-seq)) s)
 
 ;; (remove-chars "sport" "abcdsport")
 ;; (seq "sport")
 ;; (seq "abcdsport")
 ;; (set/difference (set (seq "abcdsport")) (set (seq "sport")))
 ;; (str/join (set/difference (set (seq "abcdsport")) (set (seq "sport"))))
+
+;;;; transpose-table
+;; (def table ["safku" "pbglv" "ochmw" "rdinx" "tejqy"])
+;; (def a (map first table))
+;; (def b (map second table))
+;; (def c (map #(nth % 2) table))
+;; c
+;; (map #(str %1 %2) a b)
+
+;; (reduce str a)
+
+;; (dotimes [i (count (first table))]
+;;   (println (join (map #(nth % i) table))))
+
+;; (defn transpose-row [table i]
+;;   (join (map #(nth % i) table)))
+
+;; (map #(transpose-row table %) (range (count (first table))))
