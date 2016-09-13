@@ -14,9 +14,9 @@
 ;; HACKERRANK
 ;; The following is my message :
 ;; A EBYCGCQYEBP VGMDZCH FMG CBOGJVYEMB YXABSQ FMG XAOSCGGABS YCAH
-;; 1) find the alphabetical order for keyword and remove duplication...
+;; v 1) find the alphabetical order for keyword and remove duplication...
 ;; [sport] ->[3,1,0,2,4]
-;; 2) make table for keyword. in the first row, add keyword..and keep putting alphabet, skipping when encountered with keyord(sport)... s,p,o,r,t
+;; v 2) make table for keyword. in the first row, add keyword..and keep putting alphabet, skipping when encountered with keyord(sport)... s,p,o,r,t
 ;; [sport,abcde,hijhk ... ]
 ;; 3) transpose for keyword. re-write for row-column swap...
 ;; [sah~~ , pbi~~ , ocj~~, ...]
@@ -43,6 +43,9 @@
 (defn keyword-table [string]
   (let [s (distinct-string string)]
     (conj (map str/join (partition-all (count s) (remove-chars string alphabet-seq))) s)))
+
+(defn transpose-table [table]
+  table)
 
 (defn keyword-transposition
 

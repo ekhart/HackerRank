@@ -15,6 +15,8 @@ LDXTW KXDTL NBSFX BFOII LNBHG ODDWN BWK
 SECRET
 JHQSU XFXBQ")
 
+(def table ["sport", "abcde", "fghij", "klmnq", "uvwxy", "z"])
+
 (deftest parseInt-test
   (testing "parseInt"
     (is (= (parseInt "1") 1))))
@@ -32,7 +34,10 @@ JHQSU XFXBQ")
     (is (= (remove-chars "sport" alphabet-seq) "abcdefghijklmnquvwxyz")))
 
   (testing "keyword-table"
-    (is (= (keyword-table "sport") ["sport", "abcde", "fghij", "klmnq", "uvwxy", "z"])))
+    (is (= (keyword-table "sport") table)))
+
+  (testing "transpose-table"
+    (is (= (transpose-table table) ["safku" "pbglv" "ochmw" "rdinx" "tejqy"])))
 
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
