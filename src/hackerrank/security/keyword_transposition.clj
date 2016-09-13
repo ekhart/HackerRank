@@ -18,7 +18,7 @@
 ;; [sport] ->[3,1,0,2,4]
 ;; v 2) make table for keyword. in the first row, add keyword..and keep putting alphabet, skipping when encountered with keyord(sport)... s,p,o,r,t
 ;; [sport,abcde,hijhk ... ]
-;; 3) transpose for keyword. re-write for row-column swap...
+;; v 3) transpose for keyword. re-write for row-column swap...
 ;; [sah~~ , pbi~~ , ocj~~, ...]
 ;; 4) create decryption table(key-value pair) by putting together those of transposed array in 3) and the alphabetical order in 1)... in vice versa, value-key can play a role for encrytion...
 ;; ascii_letter       : abcdefg~~~
@@ -50,6 +50,10 @@
     (join (map #(if (>= i (count %)) "" (nth % i)) table)))
 
   (map #(transpose-row table %) (range (count (first table)))))
+
+(defn sort-table [transposed string]
+  (let [s (join (sort (distinct-string string)))]
+    transposed))
 
 (defn keyword-transposition
 
@@ -94,3 +98,6 @@
 ;;   (join (map #(nth % i) table)))
 
 ;; (map #(transpose-row table %) (range (count (first table))))
+
+
+;; (join (sort "sport"))
