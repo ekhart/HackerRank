@@ -2,9 +2,9 @@
 ;; https://www.hackerrank.com/challenges/keyword-transposition-cipher
 
 (ns hackerrank.security.keyword-transposition
-  (:require [clojure.java.io :as io])
-  (:use [clojure.string :only (split join trim) :as str]
-        [clojure.set :as set]))
+  (:require [clojure.java.io :as io]
+            [clojure.set :as set])
+  (:use [clojure.string :only (split join trim) :as str]))
 
 (defn parseInt [string]
   (Integer/parseInt string))
@@ -35,15 +35,14 @@
 (def alphabet-seq (map char (range (int \a) (inc (int \z)))))
 (def alphabet (str/join alphabet-seq))
 
-(defn keyword-table [string]
-  (let [s (distinct-string string)]
-    (conj (map str/join (partition (count s) alphabet-seq)) s)))
-
 (defn remove-chars [to from]
   (let [a (set (seq to))
         b (set (seq from))]
-    (set/difference b a)))
+    (join (set/difference b a))))
 
+(defn keyword-table [string]
+  (let [s (distinct-string string)]
+    (conj (map str/join (partition-all (count s) (remove-chars string alphabet-seq))) s)))
 
 (defn keyword-transposition
 

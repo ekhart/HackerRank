@@ -32,7 +32,7 @@ JHQSU XFXBQ")
     (is (= (remove-chars "sport" alphabet-seq) "abcdefghijklmnquvwxyz")))
 
   (testing "keyword-table"
-    (is (= (keyword-table "sport") ["sport", "abcde", "fghij", "klmnp", "quvwx", "yz"])))
+    (is (= (keyword-table "sport") ["sport", "abcde", "fghij", "klmnq", "uvwxy", "z"])))
 
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
