@@ -51,9 +51,12 @@
 
   (map #(transpose-row table %) (range (count (first table)))))
 
+(defn find-first-starts-with [table letter]
+  (first (filter #(str/starts-with? % letter) table)))
+
 (defn sort-table [transposed string]
   (let [s (join (sort (distinct-string string)))]
-    transposed))
+    (map #(find-first-starts-with table %) s)))
 
 (defn keyword-transposition
 
@@ -82,7 +85,7 @@
 ;; (str/join (set/difference (set (seq "abcdsport")) (set (seq "sport"))))
 
 ;;;; transpose-table
-;; (def table ["safku" "pbglv" "ochmw" "rdinx" "tejqy"])
+(def table ["safku" "pbglv" "ochmw" "rdinx" "tejqy"])
 ;; (def a (map first table))
 ;; (def b (map second table))
 ;; (def c (map #(nth % 2) table))
@@ -100,4 +103,7 @@
 ;; (map #(transpose-row table %) (range (count (first table))))
 
 
-;; (join (sort "sport"))
+(def s (join (sort "sport")))
+
+(map identity s)
+(first (filter #(str/starts-with? % "o") table))
