@@ -51,8 +51,15 @@ JHQSU XFXBQ")
     (is (= (sort-table hackerrank-table-transposed "secret") ["cdjow" "ebinv" "rfkpx" "sahmuz" "tglqy"])))
 
   (testing "cipher-dict"
-    (is (= (cipher-dict table-transposed "sport") "ochmwpbglvrdinxsafkuztejqy"))
-    (is (= (cipher-dict hackerrank-table-transposed "secret") "cdjowebinvrfkpxsahmuztglqy")))
+    (is (= (cipher-dict-values table-transposed "sport") "ochmwpbglvrdinxsafkuztejqy"))
+    (is (= (cipher-dict-values hackerrank-table-transposed "secret") "cdjowebinvrfkpxsahmuztglqy")))
+
+  (testing "encode-dict"
+    (is (= (encode-dict "och") { "a" "o", "b" "c", "c" "h"})))
+
+  (testing "decode-dict"
+    (is (= (decode-dict "och") { "o" "a", "c" "b", "h" "c"})))
+
 
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))

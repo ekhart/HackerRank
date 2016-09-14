@@ -58,8 +58,19 @@
   (let [s (join (sort (distinct-string string)))]
     (map #(find-first-starts-with transposed (str %)) s)))
 
-(defn cipher-dict [transposed string]
+(defn cipher-dict-values [transposed string]
   (join (sort-table transposed string)))
+
+(defn code-dict [from to]
+  (into {} (map #(vector (str %1) (str %2)) from (seq to))))
+
+(defn encode-dict [string]
+  (code-dict alphabet-seq string))
+
+(defn decode-dict [string]
+  (code-dict string alphabet-seq))
+
+
 
 (defn keyword-transposition
 
