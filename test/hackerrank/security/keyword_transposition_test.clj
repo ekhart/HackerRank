@@ -60,6 +60,12 @@ JHQSU XFXBQ")
   (testing "decode-dict"
     (is (= (decode-dict "och") { "o" "a", "c" "b", "h" "c"})))
 
+  (testing "decode"
+    (is (= (decode "sport" "LDXTW KXDTL NBSFX BFOII LNBHG ODDWN BWK") "ILOVE SOLVI NGPRO GRAMM INGCH ALLEN GES")))
+
+  (testing "encode"
+    (is (= (encode "sport" "LDXTW KXDTL NBSFX BFOII LNBHG ODDWN BWK") "ILOVE SOLVI NGPRO GRAMM INGCH ALLEN GES")))
+
 
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))

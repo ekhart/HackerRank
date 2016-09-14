@@ -20,7 +20,7 @@
 ;; [sport,abcde,hijhk ... ]
 ;; v 3) transpose for keyword. re-write for row-column swap...
 ;; [sah~~ , pbi~~ , ocj~~, ...]
-;; 4) create decryption table(key-value pair) by putting together those of transposed array in 3) and the alphabetical order in 1)... in vice versa, value-key can play a role for encrytion...
+;; v 4) create decryption table(key-value pair) by putting together those of transposed array in 3) and the alphabetical order in 1)... in vice versa, value-key can play a role for encrytion...
 ;; ascii_letter       : abcdefg~~~
 ;; encrypted_letter   : ocj~~pbi~~
 ;; decryption table   : o:a, c:b,~~
@@ -32,7 +32,7 @@
   (str/join (distinct string)))
 
 ;; "abcdefghijklmnopqrstuvwxyz"
-(def alphabet-seq (map char (range (int \a) (inc (int \z)))))
+(def alphabet-seq (map char (range (int \A) (inc (int \Z)))))
 (def alphabet (str/join alphabet-seq))
 
 (defn remove-chars [to from]
@@ -70,6 +70,38 @@
 (defn decode-dict [string]
   (code-dict string alphabet-seq))
 
+
+(defn decode-char [word char]
+  (let [table (keyword-table word)
+        transposed (transpose-table table)
+        values (cipher-dict-values transposed word)
+        dict (decode-dict values)]
+
+;;     (println table)
+;;     (println transposed)
+;;     (println values)
+;;     (println dict)
+;;     (println (str char))
+;;     (println (dict (str char)))
+
+    (dict (str char))))
+
+(defn encode-char [word char]
+  (let [table (keyword-table word)
+        transposed (transpose-table table)
+        values (cipher-dict-values transposed word)
+        dict (encode-dict values)]
+    (dict (str char))))
+
+(defn decode [word text]
+  (join (map #(decode-char word %) text)))
+
+(defn encode [word text]
+  (join (map #(encode-char word %) text)))
+
+
+;; (map #({"a" 1 "d" 2} (str %)) "asdf")
+;; (decode-char "sport" \L)
 
 
 (defn keyword-transposition
