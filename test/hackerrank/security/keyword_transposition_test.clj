@@ -50,6 +50,10 @@ JHQSU XFXBQ")
     (is (= (sort-table table-transposed "sport") ["ochmw" "pbglv" "rdinx" "safkuz" "tejqy"]))
     (is (= (sort-table hackerrank-table-transposed "secret") ["cdjow" "ebinv" "rfkpx" "sahmuz" "tglqy"])))
 
+  (testing "cipher-dict"
+    (is (= (cipher-dict table-transposed "sport") "ochmwpbglvrdinxsafkuztejqy"))
+    (is (= (cipher-dict hackerrank-table-transposed "secret") "cdjowebinvrfkpxsahmuztglqy")))
+
   (testing "keyword-transposition"
     (is (= (keyword-transposition test-input) 2)))
 

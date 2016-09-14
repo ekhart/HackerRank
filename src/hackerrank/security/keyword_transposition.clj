@@ -58,6 +58,9 @@
   (let [s (join (sort (distinct-string string)))]
     (map #(find-first-starts-with transposed (str %)) s)))
 
+(defn cipher-dict [transposed string]
+  (join (sort-table transposed string)))
+
 (defn keyword-transposition
 
   ([]
