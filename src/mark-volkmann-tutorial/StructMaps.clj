@@ -16,3 +16,4 @@ vehicle
 (make vehicle)
 (vehicle :make) ; same but slower
 (:make vehicle) ; same but slower
+
