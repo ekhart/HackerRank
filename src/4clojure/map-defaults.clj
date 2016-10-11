@@ -1,3 +1,5 @@
+;; http://www.4clojure.com/problem/156
+
 (defn map-default [default coll]
   (assoc {} (first coll) default)
   (loop [l {} r coll]
