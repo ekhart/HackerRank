@@ -48,3 +48,21 @@ Calendar/APRIL ; when was imported
 (map (memfn substring beginIndex) ["Moe" "Larry" "Curly"] [1 2 3])
 (map (memfn substring index) ["Moe" "Larry" "Curly"] [1 2 3])
 (map (memfn substring _) ["Moe" "Larry" "Curly"] [1 2 3])
+
+
+;;; Proxies
+; proxy - extends given Java class -> implement callback methods in listeners
+
+
+;;; Threads
+; all clojure functions implements Runnable & Callable interface
+(defn delayed-print [ms text]
+  (Thread/sleep ms)
+  (println text))
+
+; Pass an anonymous function that invokes delayed-print
+; to the Thread constructor so the delayed-print function
+; executes inside the Thread instead of
+; while the Thread object is being created.
+(.start (Thread. #(delayed-print 1000 ", World!")))
+(print "Hello")
