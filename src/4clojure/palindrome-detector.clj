@@ -4,14 +4,16 @@
 ;; (defn palindrome? [coll]
 ;;   (println (int (/ (count coll) 2))))
 
+(def not-nil? (complement nil?))
+
 (defn palindrome? [coll]
   (loop [c coll
          r false]
-    (if (not (= (first c) (last c)))
-      false
-      (recur
-        (-> c rest butlast)
-        true))))
+    (let [f (first c)
+          l (last c)]
+      (if (and (not-nil? f) (not-nil? l) (= f l))
+        (recur (-> c rest butlast) true)
+        r))))
 
 
 (false? (palindrome? '(1 2 3 4 5)))
@@ -29,3 +31,27 @@ a
 (-> a (rest) (butlast))
 ; <=> - more readable
 (-> a rest butlast)
+
+(first a)
+(last a)
+(= (first a) (last a))
+
+(first nil)
+(last nil)
+
+(-> [1] rest butlast)
+
+
+;; 4clojure solution
+;; (fn palindrome? [coll]
+;;   (loop [c coll
+;;          r false]
+;;     (let [f (first c)
+;;           l (last c)
+;;           not-nil? (complement nil?)]
+;;       (if (and (not-nil? f) (not-nil? l) (= f l))
+;;         (recur (-> c rest butlast) true)
+;;         r))))
+
+;; _artem_uv's solution:
+;; #(if (= (apply str %) (apply str (vec (reverse %)))) true false)
