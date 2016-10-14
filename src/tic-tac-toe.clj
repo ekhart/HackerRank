@@ -1,3 +1,7 @@
+(ns tic-tac-toe.tic-tac-toe
+	(:require [clojure.java.io :as io])
+  (:use [clojure.string :only (split join)]))
+
 (use '[clojure.pprint :only (pprint)])
 (use '[clojure.string :only (join)])
 
@@ -7,6 +11,8 @@
 ;; 2 show clear table
 ;; 3 get player input: where to put its char
 ;; 4 check if player win
+
+;; todo: TDD
 
 
 (def array [[nil nil nil]
@@ -27,3 +33,6 @@
 
 ;; print array state
 (print-array array)
+
+;; 3 get player input
+;; (with-in-str "0 0"
