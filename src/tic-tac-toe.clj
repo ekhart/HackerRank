@@ -8,26 +8,13 @@
 ;; 3 get player input: where to put its char
 ;; 4 check if player win
 
-(def array [[nil nil nil] [nil nil nil] [nil nil nil]])
-; todo - how to auto generate it
-;; (clojure.pprint/pprint arry)
 
-(def arry (make-array Integer/TYPE 3 3))
-;; (pprint arry)
+(def array [[nil nil nil]
+            [nil nil nil]
+            [nil nil nil]])
 
-;; (for [_ (range 3)] [nil nil nil])
-(for [_ (range 3)] (for [_ (range 3)] nil))
-
-; o|o|o
-; -----
-; o|o|o
-; -----
-; o|o|o
-;; (defn print-tabl [table]
-;;   (doseq [row table]
-;;     (println
-;;       (join "|"
-;;             (map #(if (nil? %) " " %) row)))))
+;; (def arry (make-array Integer/TYPE 3 3))
+;; (for [_ (range 3)] (for [_ (range 3)] nil))
 
 (defn join-row [row]
   (join "|" (map #(if (nil? %) " " %) row)))
@@ -38,6 +25,5 @@
   (print (join "\n-----\n" (map join-row array)))
   (println))
 
+;; print array state
 (print-array array)
-
-(print-tabl array)
