@@ -8,7 +8,8 @@
 ;; 3 get player input: where to put its char
 ;; 4 check if player win
 
-(def array [[nil nil nil] [nil nil nil] [nil nil nil]])   ; todo - how to auto generate it
+(def array [[nil nil nil] [nil nil nil] [nil nil nil]])
+; todo - how to auto generate it
 ;; (clojure.pprint/pprint arry)
 
 (def arry (make-array Integer/TYPE 3 3))
@@ -31,7 +32,12 @@
 (defn join-row [row]
   (join "|" (map #(if (nil? %) " " %) row)))
 
-(defn print-tabl [table]
-  (map #(join "-----\n" (join-row %)) table))
+(join-row [nil 'o 'x])
 
-(print (print-tabl array))
+(defn print-array [array]
+  (print (join "\n-----\n" (map join-row array)))
+  (println))
+
+(print-array array)
+
+(print-tabl array)
