@@ -46,3 +46,5 @@
 
 (summarize ["Moe" "Larry" "Curly"])
 (summarize [])
+
+; condp ~ switch/case statement: 2 param predicate (=, instance?)
