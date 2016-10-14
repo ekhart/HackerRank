@@ -66,3 +66,40 @@ Calendar/APRIL ; when was imported
 ; while the Thread object is being created.
 (.start (Thread. #(delayed-print 1000 ", World!")))
 (print "Hello")
+
+
+;;; Exception Handling
+; try, catch, finally, throw
+(defn collection? [obj]
+  (println "obj is a" (class obj))
+  ; Clojure collections implement clojure.lang.IPersistentCollection
+  (or (coll? obj)   ; Clojure collection?
+      (instance? java.util.Collection obj))) ; Java collection?
+
+(defn average [coll]
+  (when-not (collection? coll)
+    (throw (IllegalArgumentException. "expected a collection")))
+  (when (empty? coll)
+    (throw (IllegalArgumentException. "collection is empty")))
+  ; Apply the + function to all the items in coll,
+  ; then divide by the number of items in it.
+  (let [sum (apply + coll)]
+    (/ sum (count coll))))
+
+(try
+  (println "list average =" (average '(2 3)))
+  (println "vector average =" (average [2 3]))
+  (println "set average =" (average #{2 3}))
+
+  (let [al (java.util.ArrayList.)]
+    (doto al (.add 2) (.add 3))
+    (println "ArrayList average =" (average al)))
+
+  (println "string average =" (average "1 2 3 4"))
+
+  (catch IllegalArgumentException e
+    (println e)
+;;     (.printStackTrace e)
+  )
+  (finally
+    (println "in finally")))
