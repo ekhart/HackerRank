@@ -48,3 +48,38 @@
 (summarize [])
 
 ; condp ~ switch/case statement: 2 param predicate (=, instance?)
+(print "Enter a number: ")
+(flush)
+(with-in-str "1."  ; LightTable doesn't handle stdin
+  (let [reader (java.io.BufferedReader. *in*)
+        line (.readLine reader)
+        value (try
+                (Integer/parseInt line)
+                (catch NumberFormatException e line))]   ; use string value if not integer
+    (println
+      (condp = value
+        1 "one"
+        2 "two"
+        3 "three"
+        (str "unexpected value, \"" value  \")))
+
+    (println
+      (condp instance? value
+        Number (* value 2)
+        String (* (count value) 2)))))
+
+; if, else if, else generalized
+(print "Enter water temeperature in Celsius: ")
+(flush)
+(with-in-str "0"
+  (let [reader (java.io.BufferedReader. *in*)
+        line (.readLine reader)
+        temeperature (try
+                       (Float/parseFloat line)
+                       (catch NumberFormatException e line))]
+    (println
+      (cond
+        (instance? String temeperature) "invalide temeperature"
+        (<= temeperature 0) "freezing"
+        (>= temeperature 100) "boiling"
+        true "neither"))))
