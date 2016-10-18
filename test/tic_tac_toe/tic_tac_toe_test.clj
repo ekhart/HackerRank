@@ -12,5 +12,5 @@
 
   (testing "player-input"
     (with-in-str "00"
-      (is (=(player-input) [0 0]))))
+      (is (= (player-input) [0 0]))))
 )
