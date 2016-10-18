@@ -54,3 +54,6 @@
 
 ;; 3 get player input
 ;; (with-in-str "0 0"
+(defn player-input []
+  nil)
+

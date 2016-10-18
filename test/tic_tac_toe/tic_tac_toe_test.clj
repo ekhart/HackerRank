@@ -11,6 +11,6 @@
     (is (= (join-row [nil nil nil]) " | | ")))
 
   (testing "player-input"
-    (is (= (with-in-str "00"
-             (player-input) [0 0]))))
+    (with-in-str "00"
+      (is (=(player-input) [0 0]))))
 )
