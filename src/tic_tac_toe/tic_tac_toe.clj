@@ -27,9 +27,9 @@
 ;; todo: TDD
 
 
-(def array [[\o nil nil]
+(def array [[nil nil nil]
             [nil \x nil]
-            [nil nil nil]])
+            [\o nil nil]])
 
 ;; (def arry (make-array Integer/TYPE 3 3))
 ;; (for [_ (range 3)] (for [_ (range 3)] nil))
