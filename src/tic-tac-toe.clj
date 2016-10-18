@@ -6,17 +6,29 @@
 (use '[clojure.string :only (join)])
 
 ;; 2 players: X, O
+;; 1 plane 2d array with 9 places (3 x 3)
 
 ;; 1 random how start: x or o
 ;; 2 show clear table
 ;; 3 get player input: where to put its char
-;; 4 check if player win
+;; 3.1 check if position is empty? -> if not print "error" and get next valid input from player
+;; 4 check if player win: check horizontal line, vertical, cross
+;; 4.1 if win then print: player x|o win!
+;; 4.2 if there ar not empty
+
+;; player vs player
+
+;; player vs AI:
+;; 0 - put at random first empty
+;; 1 - algorithm - think where is best to place char
+
+;; next: change it to desktop app (use Java forms)
 
 ;; todo: TDD
 
 
-(def array [[nil nil nil]
-            [nil nil nil]
+(def array [[\o nil nil]
+            [nil \x nil]
             [nil nil nil]])
 
 ;; (def arry (make-array Integer/TYPE 3 3))
