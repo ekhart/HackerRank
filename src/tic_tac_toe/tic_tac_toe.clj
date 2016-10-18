@@ -5,6 +5,11 @@
 (use '[clojure.pprint :only (pprint)])
 (use '[clojure.string :only (join)])
 
+;; done:
+;; TDD
+;; printing array
+
+;; design:
 ;; 2 players: X, O
 ;; 1 plane 2d array with 9 places (3 x 3)
 
@@ -16,15 +21,16 @@
 ;; 4.1 if win then print: player x|o win!
 ;; 4.2 if there ar not empty
 
+;; feature: change it to desktop app (use Java forms)
+
 ;; player vs player
 
 ;; player vs AI:
 ;; 0 - put at random first empty
 ;; 1 - algorithm - think where is best to place char
 
-;; next: change it to desktop app (use Java forms)
-
-;; todo: TDD
+;; todo:
+;; get player input
 
 
 (def array [[nil nil nil]
