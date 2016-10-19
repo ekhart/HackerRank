@@ -47,3 +47,11 @@
 (doall (take 3 f-seq))
 
 (println (nth f-seq 2)) ; uses cached result -> 2.0
+
+(defn consumer [seq]
+  ; Since seq is a local binding, the evaluated items in it
+  ; are cached while in this function and then garbage collected.
+  (println (first seq)) ; evaluates (f 0)
+  (println (nth seq 2))) ; evaluates (f 1) and (f 2)
+
+(consumer (map f (iterate inc 0)))
