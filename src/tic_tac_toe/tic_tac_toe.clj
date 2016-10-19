@@ -60,7 +60,7 @@
 
 (defn player-input []
   (print "Where to put your sign? ")
-  (-> *in* java.io.BufferedReader. line-seq first chars-seq map-to-ints))
+  (-> (read-line) chars-seq map-to-ints))
 
 ;; (map-to-ints (split "00" #""))
 
