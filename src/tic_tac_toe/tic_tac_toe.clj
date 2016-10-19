@@ -1,9 +1,7 @@
 (ns tic-tac-toe.tic-tac-toe
 	(:require [clojure.java.io :as io])
-  (:use [clojure.string :only (split join)]))
-
-(use '[clojure.pprint :only (pprint)])
-(use '[clojure.string :only (join)])
+  (:use [clojure.string :only (split join)]
+        [clojure.pprint :only (pprint)]))
 
 ;; done:
 ;; TDD
@@ -54,6 +52,16 @@
 
 ;; 3 get player input
 ;; (with-in-str "0 0"
-(defn player-input []
-  nil)
+(defn chars-seq [string]
+  (split string #""))
 
+(defn map-to-ints [coll]
+  (map #(Integer/parseInt %) coll))
+
+(defn player-input []
+  (print "Where to put your sign? ")
+  (-> *in* java.io.BufferedReader. line-seq first chars-seq map-to-ints))
+
+;; (map-to-ints (split "00" #""))
+
+;; ((memfn Integer/parseInt) "1") ; dont work
