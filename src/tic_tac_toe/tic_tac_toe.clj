@@ -48,17 +48,17 @@
 ;; (def arry (make-array Integer/TYPE 3 3))
 ;; (for [_ (range 3)] (for [_ (range 3)] nil))
 
+;; (reduce #(conj %1 (for [_ (range %2)] nil)) [] (repeat 3 3))
+;; (reduce #(conj %1 (repeat %2 nil)) [] (repeat 3 3))
+;; (repeat 3 (repeat 3 nil)) ; simpest
+
+
 (defn join-row [row]
   (join "|" (map #(if (nil? %) " " %) row)))
-
-(join-row [nil 'o 'x])
 
 (defn print-array [array]
   (print (join "\n-----\n" (map join-row array)))
   (println))
-
-;; print array state
-(print-array *array*)
 
 (defn chars-seq [string]
   (split string #""))
