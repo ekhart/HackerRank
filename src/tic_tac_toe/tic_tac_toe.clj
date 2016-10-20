@@ -7,6 +7,7 @@
 ;; TDD
 ;; printing array
 ;; player input
+;; change [0 0] -> {:row 0 :col 0} - more readable
 
 ;; design:
 ;; 2 players: X, O
@@ -59,28 +60,23 @@
 ;; print array state
 (print-array *array*)
 
-;; 3 get player input
-;; (with-in-str "0 0"
 (defn chars-seq [string]
   (split string #""))
 
 (defn map-to-ints [coll]
-  (map #(Integer/parseInt %) coll))
+  (letfn [(parseInt-at [place] (Integer/parseInt (place coll)))]
+    {:row (parseInt-at first)
+     :col (parseInt-at second)}))
 
 (defn player-input []
   (print "Where to put your sign? ")
   (-> (read-line) chars-seq map-to-ints))
 
-;; (map-to-ints (split "00" #""))
-
 ;; ((memfn Integer/parseInt) "1") ; dont work
 
-;; todo: change [0 0] -> {:row 0 :col 0} - more readable
 (defn get-array [input]
-  (let [row-index (first input)
-        col-index (second input)
+  (let [row-index (:row input)
+        col-index (:col input)
         row (nth *array* row-index)
         updated-row (assoc row col-index \o)]
     (assoc *array* row-index updated-row)))
-
-;; (get-array [0 0])
