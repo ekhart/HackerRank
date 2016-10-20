@@ -16,6 +16,7 @@
 ;; 2 show clear table
 ;; 3 get player input: where to put its char
 ;; 3.1 check if position is empty? -> if not print "error" and get next valid input from player
+;; 3.2 place player char in selected position
 ;; 4 check if player win: check horizontal line, vertical, cross
 ;; 4.1 if win then print: player x|o win!
 ;; 4.2 if there ar not empty
@@ -28,13 +29,14 @@
 ;; 0 - put at random first empty
 ;; 1 - algorithm - think where is best to place char
 
-;; todo:
-;; get player input
+;; in-progres:
+
+
 
 
 (def array [[nil nil nil]
-            [nil \x nil]
-            [\o nil nil]])
+            [nil nil nil]
+            [nil nil nil]])
 
 ;; (def arry (make-array Integer/TYPE 3 3))
 ;; (for [_ (range 3)] (for [_ (range 3)] nil))
