@@ -29,12 +29,19 @@
 ;; 0 - put at random first empty
 ;; 1 - algorithm - think where is best to place char
 
+
 ;; in-progres:
 
+;; improve?
+;; change [0 0] -> {:row 0 :col 0}
 
+;; http://stackoverflow.com/questions/3937729/putting-doc-strings-on-data-vars-is-it-considered-idiomatic
+;; todo: make it random at startup
+(def
+  ^{:doc "current player char" }
+  current-player \o)
 
-
-(def array [[nil nil nil]
+(def *array* [[nil nil nil]
             [nil nil nil]
             [nil nil nil]])
 
@@ -51,7 +58,7 @@
   (println))
 
 ;; print array state
-(print-array array)
+(print-array *array*)
 
 ;; 3 get player input
 ;; (with-in-str "0 0"
@@ -68,3 +75,10 @@
 ;; (map-to-ints (split "00" #""))
 
 ;; ((memfn Integer/parseInt) "1") ; dont work
+
+(defn get-array [input]
+  (let [row (nth *array* (first input))]
+    (assoc *array* (first input)
+      (assoc row (second input) \o))))
+
+;; (get-array [0 0])
