@@ -46,3 +46,28 @@
   (.pack)
   (.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
   (.setVisible true))
+
+
+; create-ns - create namespace, but dont make it default
+; def - define symbol (with optional value) in default namespace - is macro, doesnt eval all
+; intern - define symbol in selected name space - is function so need quoting
+(def foo 1)
+(create-ns 'com.ociweb.test)
+(intern 'com.ociweb.test 'foo 2)
+(println (+ foo com.ociweb.test/foo))
+
+
+; ns-interns - map of all symbols defined in given, loaded namespace
+; keys - Symbol object, values - Var (function, macro, binding)
+(ns-interns 'clojure.string)
+
+
+;; all-ns - list of all loaded namespaces
+; defualt: clojure.core, clojure.main, clojure.set, clojure.xml, clojure.zip and user
+; in REPL also: clojure.repl, clojure.java.javadoc
+
+; namespace - return namespace of given symbol/keyword
+; other functions: ns-aliases, ns-imports, ns-map, ns-name, ns-publics, ns-refers, ns-unalias, ns-unmap, remove-ns
+
+; Some Fine Print - relations between Symbol, Var & Namespace
+;; http://java.ociweb.com/mark/clojure/images/ClassDiagram.png

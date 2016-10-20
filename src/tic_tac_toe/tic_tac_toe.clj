@@ -6,6 +6,7 @@
 ;; done:
 ;; TDD
 ;; printing array
+;; player input
 
 ;; design:
 ;; 2 players: X, O
