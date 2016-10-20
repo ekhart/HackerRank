@@ -33,7 +33,6 @@
 ;; in-progres:
 
 ;; improve?
-;; change [0 0] -> {:row 0 :col 0}
 
 ;; http://stackoverflow.com/questions/3937729/putting-doc-strings-on-data-vars-is-it-considered-idiomatic
 ;; todo: make it random at startup
@@ -76,9 +75,12 @@
 
 ;; ((memfn Integer/parseInt) "1") ; dont work
 
+;; todo: change [0 0] -> {:row 0 :col 0} - more readable
 (defn get-array [input]
-  (let [row (nth *array* (first input))]
-    (assoc *array* (first input)
-      (assoc row (second input) \o))))
+  (let [row-index (first input)
+        col-index (second input)
+        row (nth *array* row-index)
+        updated-row (assoc row col-index \o)]
+    (assoc *array* row-index updated-row)))
 
 ;; (get-array [0 0])
