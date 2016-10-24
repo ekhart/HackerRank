@@ -10,6 +10,8 @@
    [nil nil nil]
    [nil nil nil]])
 
+(def full-array (repeat 3 (repeat 3 \x)))
+
 (deftest tic-tac-toe-test
 
   (testing "join-row"
@@ -27,5 +29,6 @@
     (is (= (change-player) \x)))
 
   (testing "array-full?"
-    (is (false? (array-full?))))
+    (is (false? (array-full?)))
+    (is (true? (array-full? full-array))))
 )

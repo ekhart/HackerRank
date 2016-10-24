@@ -84,4 +84,6 @@
 (defn change-player []
   (if (= *current-player* \o) \x \o))
 
-
+(defn array-full?
+  ([] (array-full? *array*))
+  ([array] (every? some? (flatten array))))
