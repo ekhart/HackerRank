@@ -41,6 +41,7 @@
     (is (true? (array-full? full-array))))
 
   (testing "player-win"
+    (is (true? (horizontal-line? horizontal-win)))
     (is (false? (player-win?)))
     (is (true? (player-win? horizontal-win))))
 )

@@ -87,3 +87,9 @@
 (defn array-full?
   ([] (array-full? *array*))
   ([array] (every? some? (flatten array))))
+
+(defn horizontal-line?
+  ([] (horizontal-line? *array*))
+  ([array]))
+
+;; (every? \x (nth *array* 0))
