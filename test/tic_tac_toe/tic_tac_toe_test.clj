@@ -25,4 +25,7 @@
 
   (testing "change-player"
     (is (= (change-player) \x)))
+
+  (testing "array-full?"
+    (is (false? (array-full?))))
 )

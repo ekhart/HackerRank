@@ -39,7 +39,7 @@
 ;; todo: make it random at startup
 (def
   ^{:doc "current player char" }
-  current-player \o)
+  *current-player* \o)
 
 (def *array* [[nil nil nil]
             [nil nil nil]
@@ -80,4 +80,8 @@
         row (nth *array* row-index)
         updated-row (assoc row col-index \o)]
     (assoc *array* row-index updated-row)))
+
+(defn change-player []
+  (if (= *current-player* \o) \x \o))
+
 
