@@ -12,6 +12,14 @@
 
 (def full-array (repeat 3 (repeat 3 \x)))
 
+(def win (repeat 3 (repeat 3 \x)))
+
+(def horizontal-win [[\o \o \o]
+                     [nil nil nil]
+                     [nil nil nil]])
+
+
+
 (deftest tic-tac-toe-test
 
   (testing "join-row"
@@ -31,4 +39,8 @@
   (testing "array-full?"
     (is (false? (array-full?)))
     (is (true? (array-full? full-array))))
+
+  (testing "player-win"
+    (is (false? (player-win?)))
+    (is (true? (player-win? horizontal-win))))
 )
