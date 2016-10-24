@@ -80,3 +80,4 @@
         row (nth *array* row-index)
         updated-row (assoc row col-index \o)]
     (assoc *array* row-index updated-row)))
+

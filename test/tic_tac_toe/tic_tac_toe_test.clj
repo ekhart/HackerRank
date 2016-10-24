@@ -22,4 +22,7 @@
   (testing "get-array"
     (with-in-str "00"
       (is (= (get-array (player-input)) array-after-input))))
+
+  (testing "change-player"
+    (is (= (change-player) \x)))
 )
