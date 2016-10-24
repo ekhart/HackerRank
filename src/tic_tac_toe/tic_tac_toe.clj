@@ -93,3 +93,10 @@
   ([array]))
 
 ;; (every? \x (nth *array* 0))
+
+(defn player-char? [c]
+  (= c *current-player*))
+
+(defn player-win?
+  ([] (player-win? *current-player*))
+  ([player] false))
