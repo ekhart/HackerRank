@@ -100,8 +100,7 @@
 
 (defn vertical-line?
   ([] (vertical-line? *array*))
-  ([array] (some #(every? player-char? %) array)))
-
+  ([array] (horizontal-line? (transpose array))))
 
 (defn player-win?
   ([] (player-win? *current-player*))
