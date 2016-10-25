@@ -17,16 +17,27 @@
 (def horizontal-win [[\o \o \o]
                      [nil nil nil]
                      [nil nil nil]])
-
 (def horizontal-win-second
   [[nil nil nil]
    [\o \o \o]
    [nil nil nil]])
-
 (def horizontal-win-third
   [[nil nil nil]
    [nil nil nil]
    [\o \o \o]])
+
+(def vertical-win
+  [[\o nil nil]
+   [\o nil nil]
+   [\o nil nil]])
+(def vertical-win-second
+  [[nil \o nil]
+   [nil \o nil]
+   [nil \o nil]])
+(def vertical-win-third
+  [[nil nil \o]
+   [nil nil \o]
+   [nil nil \o]])
 
 
 
@@ -57,6 +68,8 @@
     (is (true? (horizontal-line? horizontal-win)))
     (is (true? (horizontal-line? horizontal-win-second)))
     (is (true? (horizontal-line? horizontal-win-third)))
+
+    (is (true? (vertical-line? vertical-win)))
 
     (is (false? (player-win?)))
     (is (true? (player-win? horizontal-win))))
