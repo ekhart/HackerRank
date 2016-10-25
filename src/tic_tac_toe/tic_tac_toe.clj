@@ -94,6 +94,10 @@
   ([] (horizontal-line? *array*))
   ([array] (some #(every? player-char? %) array)))
 
+(defn transpose [array]
+  ;; http://stackoverflow.com/questions/8314789/rotate-a-list-of-list-matrix-in-clojure
+  (apply map list array))
+
 (defn vertical-line?
   ([] (vertical-line? *array*))
   ([array] (some #(every? player-char? %) array)))
