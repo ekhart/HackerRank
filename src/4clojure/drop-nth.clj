@@ -58,3 +58,8 @@
   (->> (partition-all n coll)
        (map (partial take (dec n)))
        (flatten)))
+
+
+;; Username: ekhart
+;; Rank: 5047 out of 47109
+;; Problems Solved: 57 / 156
