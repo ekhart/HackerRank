@@ -14,9 +14,10 @@
 
 (def win (repeat 3 (repeat 3 \x)))
 
-(def horizontal-win [[\o \o \o]
-                     [nil nil nil]
-                     [nil nil nil]])
+(def horizontal-win
+  [[\o \o \o]
+   [nil nil nil]
+   [nil nil nil]])
 (def horizontal-win-second
   [[nil nil nil]
    [\o \o \o]
@@ -39,7 +40,14 @@
    [nil nil \o]
    [nil nil \o]])
 
-
+(def diagonal-win
+  [[\o nil nil]
+   [nil \o nil]
+   [nil nil \o]])
+(def diagonal-win-second
+  [[nil nil \o]
+   [nil \o nil]
+   [\o nil nil]])
 
 (deftest tic-tac-toe-test
 
@@ -74,6 +82,9 @@
     (is (true? (vertical-line? vertical-win)))
     (is (true? (vertical-line? vertical-win-second)))
     (is (true? (vertical-line? vertical-win-third)))
+
+    (is (true? (diagonal-line? diagonal-win)))
+    (is (true? (diagonal-line? diagonal-win-second)))
 
     (is (false? (player-win?)))
     (is (true? (player-win? horizontal-win))))
