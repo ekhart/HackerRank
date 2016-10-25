@@ -69,6 +69,8 @@
     (is (true? (horizontal-line? horizontal-win-second)))
     (is (true? (horizontal-line? horizontal-win-third)))
 
+    (is (= (transpose horizontal-win) vertical-win))
+
     (is (true? (vertical-line? vertical-win)))
 
     (is (false? (player-win?)))

@@ -94,6 +94,11 @@
   ([] (horizontal-line? *array*))
   ([array] (some #(every? player-char? %) array)))
 
+(defn vertical-line?
+  ([] (vertical-line? *array*))
+  ([array] (some #(every? player-char? %) array)))
+
+
 (defn player-win?
   ([] (player-win? *current-player*))
   ([player] false))
