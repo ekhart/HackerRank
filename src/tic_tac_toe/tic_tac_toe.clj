@@ -94,8 +94,6 @@
   ([] (horizontal-line? *array*))
   ([array] (some #(every? player-char? %) array)))
 
-;; (some #(every? player-char? %) array)
-
 (defn player-win?
   ([] (player-win? *current-player*))
   ([player] false))

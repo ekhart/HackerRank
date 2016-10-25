@@ -23,6 +23,11 @@
    [\o \o \o]
    [nil nil nil]])
 
+(def horizontal-win-third
+  [[nil nil nil]
+   [nil nil nil]
+   [\o \o \o]])
+
 
 
 (deftest tic-tac-toe-test
@@ -51,6 +56,7 @@
 
     (is (true? (horizontal-line? horizontal-win)))
     (is (true? (horizontal-line? horizontal-win-second)))
+    (is (true? (horizontal-line? horizontal-win-third)))
 
     (is (false? (player-win?)))
     (is (true? (player-win? horizontal-win))))
