@@ -37,8 +37,7 @@
 
 ;; http://stackoverflow.com/questions/3937729/putting-doc-strings-on-data-vars-is-it-considered-idiomatic
 ;; todo: make it random at startup
-(def
-  ^{:doc "current player char" }
+(def ^{:doc "current player char"}
   *current-player* \o)
 
 (def *array* [[nil nil nil]
@@ -88,14 +87,14 @@
   ([] (array-full? *array*))
   ([array] (every? some? (flatten array))))
 
-(defn horizontal-line?
-  ([] (horizontal-line? *array*))
-  ([array]))
-
-;; (every? \x (nth *array* 0))
-
 (defn player-char? [c]
   (= c *current-player*))
+
+(defn horizontal-line?
+  ([] (horizontal-line? *array*))
+  ([array] (some #(every? player-char? %) array)))
+
+;; (some #(every? player-char? %) array)
 
 (defn player-win?
   ([] (player-win? *current-player*))
