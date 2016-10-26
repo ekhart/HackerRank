@@ -49,3 +49,89 @@
 ; coordinated chabges between multiple threads using STM (Software Transactional Memory)
 ; ref modified only in transaction
 ; STM ~ database transactions: commit; atomic & isolation; validator function
+; dosync - transaction: in it ref have private value dont visible for other threads
+; if there is no exception before end of transaction - its committed, and it visible
+; if exception -> rollback changes
+; transaction should be side-effect free -> its could be called multiple times (retry on conflict)
+
+;; (def name (ref value)
+
+(dosync
+  ; ...
+  (ref-set name new-value)
+  ; ...
+  )
+
+;; If the new value must be computed from the old value then three steps are required.
+;; 1 deference the Ref to get the old value
+;; 2 compute the new value
+;; 3 set the new value
+;; alter - changes in specific oreder
+;; commute - order of changes are not imporant - could be done parallel
+
+(dosync
+;;   ...
+  (alter counter inc)
+  ; or as
+  (commute counter inc)   ; faster (parallel) but not deterministic, optimization of alter
+;;   ...
+)
+
+
+(ns com.ociweb.bank)
+
+; Assume the only account data that can change is its balance.
+(defstruct account-struct :id :owner :balance-ref)
+
+; We need to be able to add and delete accounts to and from a map.
+; We want it to be sorted so we can easily
+; find the highest account number
+; for the purpose of assigning the next one.
+(def account-map-ref (ref (sorted-map)))
+
+(defn open-account
+  "creates a new account, stores it in the account map and returns it"
+  [owner]
+  (dosync ; required because a Ref is being changed
+    (let [account-map @account-map-ref
+          last-entry (last account-map)
+          ; The id for the new account is one higher than the last one.
+          id (if last-entry (inc (key last-entry)) 1)
+          ; Create the new account with a zero starting balance.
+          account (struct account-struct id owner (ref 0))]
+      ; Add the new account to the map of accounts.
+      (alter account-map-ref assoc id account)
+      ; Return the account that was just created.
+      account)))
+
+(defn deposit [account amount]
+  "adds money to an account; can be negative amount"
+  (dosync ; required because a Ref is being changed
+    (Thread/sleep 50) ; simulate a long-running operation
+    (let [owner (account :owner)
+          balance-ref (account :balance-ref)
+          type (if (pos? amount) "deposit" "withdraw")
+          direction (if (pos? amount) "to" "from")
+          abs-amount (Math/abs amount)]
+      (if (>= (@balance-ref amount) 0) ; sufficient balance?
+        (do
+          (alter balance-ref + amount)
+          (println (str type "ing") abs-amount direction owner))
+        (throw (IllegalArgumentException.
+                 (str "insufficient balance for " owner " to withdraw " abs-amount)))))))
+
+(defn withdraw
+  "removes money from an account"
+  [account amount]
+  ; A withdrawal is lika a negative deposit.
+  (deposit account (- amount)))
+
+(defn transfer [from-account to-account amount]
+  (dosync
+    (println "transferring" amount
+             "from" (from-account :owner)
+             "to" (to-account :owner))
+    (withdraw from-account amount)
+    (deposit to-account amount)))
+
+
