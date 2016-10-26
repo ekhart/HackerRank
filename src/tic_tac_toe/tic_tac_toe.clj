@@ -108,7 +108,12 @@
   ([array index]
    (player-char? (nth (flatten array) index))))
 
-;; (flatten (flatten *array*)) == (flatten *array*)
+;; (flatten (flatten*array*)) == (flatten *array*)
+
+(defn coll-contains? [coll item]
+  (some #{item} coll))
+
+;; (map-indexed #(some #{0 4 8} [0 1 2 3 4 5 6 7 8])
 
 (defn diagonal-line?
   ([] (diagonal-line? *array*))
