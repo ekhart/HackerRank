@@ -102,6 +102,25 @@
   ([] (vertical-line? *array*))
   ([array] (horizontal-line? (transpose array))))
 
+(defn player-char-at?
+  ([index]
+   (player-char-at? index (flatten *array*)))
+  ([array index]
+   (player-char? (nth (flatten array) index))))
+
+;; (flatten (flatten *array*)) == (flatten *array*)
+
+(defn diagonal-line?
+  ([] (diagonal-line? *array*))
+  ([array]
+   (or
+     (and (player-char-at? array 0)
+          (player-char-at? array 4)
+          (player-char-at? array 8))
+     (and (player-char-at? array 2)
+          (player-char-at? array 4)
+          (player-char-at? array 6)))))
+
 (defn player-win?
   ([] (player-win? *current-player*))
   ([player] false))
