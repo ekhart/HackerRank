@@ -134,4 +134,67 @@
     (withdraw from-account amount)
     (deposit to-account amount)))
 
+(defn- report-1 ; a private function
+  "prints information about a single account"
+  [account]
+  ; This assumes it is being called from within
+  ; the transaction started in reporrt/
+  (let [balance-ref (account :balance-ref)]
+    (println "balance for" (account :owner) "is" @balance-ref)))
 
+(defn report
+  "prints information about any number of accounts"
+  [& accounts]
+  (dosync
+    (doseq [account accounts]
+      (report-1 account))))
+
+; set a default uncaught exception handler
+; to handle exceptions not caught in other threads.
+(Thread/setDefaultUncaughtExceptionHandler
+  (proxy [Thread$UncaughtExceptionHandler] []
+    (uncaughtException [thread throwable]
+                       ; Just print the exception
+                       (println (.. throwable .getCause .getMessage)))))
+
+(let [a1 (open-account "Mark")
+      a2 (open-account "Tami")
+      thread (Thread. #(transfer a1 a2 50))]
+  (try
+    (deposit a1 100)
+    (deposit a2 200)
+
+    ; There are sufficient fund in Mark's account at this point
+    ; to transfer $50 to Tami's account.
+    (.start thread) ; will sleep in deposit function twice!
+
+    ; Unfortunately, due to the time it takes to complete the transfer
+    ; (simulated with sleep calls), the next call will complete first.
+    (withdraw a1 75)
+
+    ; Now there ara insufficient fund in Mark's account
+    ; to complete the transfer.
+
+    (.join thread)   ; wait for thread to finish
+    (report a1 a2)
+    (catch IllegalAccessException e
+      (println (.getMessage e) "in main thread"))))
+
+
+;; Validation functions
+; Note the use of the :validator directive when creating the Ref
+; to assign a validation function which is integer? in this case.
+(def my-ref (ref 0 :validator integer?))
+
+(try
+  (dosync
+    (ref-set my-ref 1) ; works
+
+    ; The next line doesn't work, so the transaction is rolled back
+    ; and the previous change isn't commited.
+    (ref-set my-ref "foo"))
+  (catch IllegalStateException e
+    ; do nothing
+    ))
+
+(println "my-ref =" @my-ref) ; due to validation failure -> 0
