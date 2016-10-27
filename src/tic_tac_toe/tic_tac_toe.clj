@@ -127,5 +127,7 @@
           (player-char-at? array 6)))))
 
 (defn player-win?
-  ([] (player-win? *current-player*))
-  ([player] false))
+  ([] (player-win? *array* *current-player*))
+  ([array] (player-win? array *current-player*))
+  ([array player]
+   (or (horizontal-line? array) (vertical-line? array) (diagonal-line? array))))

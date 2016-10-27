@@ -87,5 +87,7 @@
     (is (true? (diagonal-line? diagonal-win-second)))
 
     (is (false? (player-win?)))
-    (is (true? (player-win? horizontal-win))))
+    (is (true? (player-win? horizontal-win)))
+    (is (true? (player-win? vertical-win)))
+    (is (true? (player-win? diagonal-win))))
 )
