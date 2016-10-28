@@ -198,3 +198,105 @@
     ))
 
 (println "my-ref =" @my-ref) ; due to validation failure -> 0
+
+
+
+;; Atoms - update single value - simpler than Ref
+;; functions: reset!, compare-and-set!, swap!
+
+; reset! - set new value without validation
+(def my-atom (atom 1))
+(reset! my-atom 2)
+(println @my-atom)
+
+; compare-and-set!
+; called at end of binding
+(def my-atom (atom 1))
+
+(defn update-atom []
+  (let [curr-val @my-atom]
+    (println "update-atom: curr-val =" curr-val) ; -> 1
+    (Thread/sleep 50) ; give reset! time to run
+    (println
+      (compare-and-set! my-atom (inc curr-val))))) ; -> false
+
+(let [thread (Thread. #(update-atom))]
+  (.start thread)
+  (Thread/sleep 25) ; give thread time to call update-atom
+  (reset! my-atom 3) ; happends after update-atom binds curr-val
+  (.join thread)) ; wait for thread to finish
+
+(println @my-atom) ; -> 3
+
+
+;; Agents
+; used to run tasks in separate threads
+; modify state of single object in separate thread
+;; agent - create agent
+;; (def m-agent (agent initial-value))
+
+;; send - dispatch function, send-off similar, but using other thread pool
+;; send use number of CPU + 2 threads
+;; current agent - *agent*
+;; await, await-for
+;; agent-errors - exceptions, clear-agent-errors
+;; shutdown-agents
+
+
+;; Watchers
+; add-watch, remove-watch
+; agents as watchers
+
+; easy find not-pure functions (chaning global state)
+; 1 find source of small set of funs that change global state (e.g alter)
+; or use watchers to detect changes
+
+;;; deprecated use
+;; (def my-watcher (agent {}))
+
+;; (defn my-watcher-action [current-value reference]
+;;   (let [change-count-map current-value
+;;         old-count (change-count-map reference)
+;;         new-count (if old-count (inc old-count) 1)]
+;;   ; Return an updated map of change counts
+;;   ; that will become the new value of the Agent.
+;;   (assoc change-count-map reference new-count)))
+
+;; (def my-var "v1")
+;; (def my-ref (ref "r1"))
+;; (def my-atom (atom "a1"))
+
+;; (add-watcher (var my-var) :send-off my-watcher my-watcher-action)
+;; (add-watcher my-ref :send-off my-watcher my-watcher-action)
+;; (add-watcher my-atom :send-off my-watcher my-watcher-action)
+
+;; ; Change the root binding of the Var in two ways.
+;; (def my-var "v2")
+;; (alter-var-root (var my-var) (fn [curr-val] "v3"))
+
+;; ; Change the Ref in two ways.
+;; (dosync
+;;   ; The next line only changes the in-transaction value
+;;   ; so the watcher isn't notified.
+;;   (ref-set my-ref "r2")
+;;   ; When the transaction commits, the watcher is
+;;   ; notified of one change this Ref ... the last one.
+;;   (ref-set my-ref "r3"))
+;; (dosync
+;;   (alter my-ref (fn [_] "r4"))) ; And now one more.
+
+;; ; Change the Atom in two ways.
+;; (reset! my-atom "a2")
+;; (compare-and-set! my-atom @my-atom "a3")
+
+;; ; Wait for all the actions sent to the watcher Agent to complete.
+;; (await my-watcher)
+
+;; ; Output the number of changes to
+;; ; each reference object that was watched.
+;; (let [change-count-map @my-watcher]
+;;   (println "my-var changes =" (change-count-map (var my-var))) ; -> 2
+;;   (println "my-ref changes =" (change-count-map my-ref)) ; -> 2
+;;   (println "my-atom changes =" (change-count-map my-atom))) ; -> 2
+
+;; (shutdown-agents)
