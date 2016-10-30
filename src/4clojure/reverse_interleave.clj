@@ -7,9 +7,11 @@
 
 
 (defn __ [coll n]
-  (partition-by #(mod % (inc n)) coll))
+;;   (partition-by #(mod % (inc n)) coll))
 
 ;; (mod 5 3)
+
+(map-indexed #(mod %1
 
 (= (__ [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6)))
 
