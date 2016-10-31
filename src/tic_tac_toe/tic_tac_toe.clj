@@ -1,7 +1,8 @@
 (ns tic-tac-toe.tic-tac-toe
 	(:require [clojure.java.io :as io])
   (:use [clojure.string :only (split join blank?)]
-        [clojure.pprint :only (pprint)]))
+        [clojure.pprint :only (pprint)])
+  (:import [java.util Random]))
 
 ;; done:
 ;; TDD
@@ -136,6 +137,11 @@
   ([] (game-end? *array*))
   ([array] (or (player-win? array) (array-full? array))))
 
-;; (defn
 (defn in-range? [start end value]
   (<= start value end))
+
+(defn random-int [from to]
+  (let [random (Random.)]
+    (+ (.nextInt random (inc to)) from)))
+
+;; (random-int 0 2)

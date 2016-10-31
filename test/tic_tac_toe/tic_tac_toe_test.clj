@@ -98,6 +98,8 @@
     (is (true? (game-end? full-array))))
 
   (testing "random-player-input"
-    (is (true? (in-range? 0 2 0))))
+    (is (true? (in-range? 0 2 0)))
+
+    (is (true? (in-range? 0 2 (random-int 0 2)))))
 
 )
