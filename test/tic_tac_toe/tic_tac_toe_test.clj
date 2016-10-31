@@ -94,5 +94,6 @@
     (is (true? (player-win? diagonal-win))))
 
   (testing "game-end?"
-    (is (false? (game-end?))))
+    (is (false? (game-end?)))
+    (is (true? (game-end? full-array))))
 )
