@@ -4,6 +4,7 @@
 
 ;; run:
 ;; lein.bat test tic-tac-toe.tic-tac-toe-test
+;; lein test tic-tac-toe.tic-tac-toe-test
 
 (def array-after-input
   [[\o nil nil]

@@ -1,6 +1,6 @@
 (ns tic-tac-toe.tic-tac-toe
 	(:require [clojure.java.io :as io])
-  (:use [clojure.string :only (split join)]
+  (:use [clojure.string :only (split join blank?)]
         [clojure.pprint :only (pprint)]))
 
 ;; done:
@@ -60,7 +60,7 @@
   (println))
 
 (defn chars-seq [string]
-  (split string #""))
+  (filter (complement blank?) (split string #"")))
 
 (defn map-to-ints [coll]
   (letfn [(parseInt-at [place] (Integer/parseInt (place coll)))]
