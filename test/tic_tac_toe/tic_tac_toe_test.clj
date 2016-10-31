@@ -96,4 +96,8 @@
   (testing "game-end?"
     (is (false? (game-end?)))
     (is (true? (game-end? full-array))))
+
+  (testing "random-player-input"
+    (is (true? (in-range? 0 2 0))))
+
 )

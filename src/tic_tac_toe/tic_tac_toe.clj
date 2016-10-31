@@ -135,3 +135,7 @@
 (defn game-end?
   ([] (game-end? *array*))
   ([array] (or (player-win? array) (array-full? array))))
+
+;; (defn
+(defn in-range? [start end value]
+  (<= start value end))
