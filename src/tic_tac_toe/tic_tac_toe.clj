@@ -141,7 +141,7 @@
   (<= start value end))
 
 (defn random-int [from to]
-  (let [random (Random.)]
-    (+ (.nextInt random (inc to)) from)))
-
-;; (random-int 0 2)
+  (let [random (Random.)
+        inc-to (inc to)
+        next-int (.nextInt random inc-to)]
+    (+ next-int from)))
