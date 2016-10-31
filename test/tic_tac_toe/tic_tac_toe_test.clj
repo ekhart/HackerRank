@@ -50,6 +50,7 @@
    [nil \o nil]
    [\o nil nil]])
 
+
 (deftest tic-tac-toe-test
 
   (testing "join-row"
@@ -91,4 +92,7 @@
     (is (true? (player-win? horizontal-win)))
     (is (true? (player-win? vertical-win)))
     (is (true? (player-win? diagonal-win))))
+
+  (testing "game-end?"
+    (is (false? (game-end?))))
 )

@@ -131,3 +131,6 @@
   ([array] (player-win? array *current-player*))
   ([array player]
    (or (horizontal-line? array) (vertical-line? array) (diagonal-line? array))))
+
+(defn game-end? []
+  (or (player-win?) (array-full?)))
