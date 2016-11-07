@@ -100,6 +100,11 @@
   (testing "random-player-input"
     (is (true? (in-range? 0 2 0)))
 
-    (is (true? (in-range? 0 2 (random-int 0 2)))))
+    (is (true? (in-range? 0 2 (random-int 0 2))))
+
+    (let [input (player-input-random)]
+      (is (true? (and (in-range? (input :row))
+                      (in-range? (input :col)))))))
+
 
 )
