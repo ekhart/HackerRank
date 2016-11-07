@@ -151,5 +151,8 @@
 (defn player-input-random []
   (player-input-hash (random-int 0 2) (random-int 0 2)))
 
-(defn get-array-nth [array row col]
+(defn array-cell [array row col]
   (nth (nth array row) col))
+
+(defn array-cell-empty? [array row col]
+  (nil? (array-cell array row col)))

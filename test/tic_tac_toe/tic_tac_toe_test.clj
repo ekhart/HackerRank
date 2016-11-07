@@ -108,7 +108,10 @@
 
     (is (= (player-input-hash 0 0) {:row 0 :col 0}))
 
-    (is (= (get-array-nth horizontal-win 0 0) \o))
+    (is (= (array-cell horizontal-win 0 0) \o))
+
+    (is (true? (array-cell-empty? horizontal-win 1 0)))
+    (is (false? (array-cell-empty? horizontal-win 0 0)))
 
     )
 
