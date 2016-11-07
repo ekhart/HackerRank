@@ -103,8 +103,8 @@
     (is (true? (in-range? 0 2 (random-int 0 2))))
 
     (let [input (player-input-random)]
-      (is (true? (and (in-range? (input :row))
-                      (in-range? (input :col)))))))
+      (is (true? (and (in-range? 0 2 (input :row))
+                      (in-range? 0 2 (input :col)))))))
 
 
 )

@@ -146,3 +146,6 @@
         next-int (.nextInt random inc-to)]
     (+ next-int from)))
 
+(defn player-input-random []
+  {:row (random-int 0 2)
+   :col (random-int 0 2)})
