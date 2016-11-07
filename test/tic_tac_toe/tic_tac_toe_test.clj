@@ -104,7 +104,8 @@
 
     (let [input (player-input-random)]
       (is (true? (and (in-range? 0 2 (input :row))
-                      (in-range? 0 2 (input :col)))))))
+                      (in-range? 0 2 (input :col))))))
 
+    (is (= (player-input-hash 0 0) {:row 0 :col 0})))
 
 )
