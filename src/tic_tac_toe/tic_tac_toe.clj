@@ -61,7 +61,7 @@
   (println))
 
 (defn chars-seq [string]
-  (filter (complement blank?) (split string #"")))
+  (remove blank? (split string #"")))
 
 (defn map-to-ints [coll]
   (letfn [(parseInt-at [place] (Integer/parseInt (place coll)))]
