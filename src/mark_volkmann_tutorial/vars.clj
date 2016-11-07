@@ -9,4 +9,4 @@
 	(let [v 2]
 		; local binding only within this let statement
 		(println "f2: in let, v:" v)
-		(f1))
+		(f1)))

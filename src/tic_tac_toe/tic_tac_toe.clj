@@ -157,5 +157,8 @@
 (defn array-cell-empty? [array row col]
   (nil? (array-cell array row col)))
 
-(defn player-input-random-array []
-  (get-array (player-input-random)))
+(defn player-input-random-array
+  ([] (player-input-random-array *array*))
+  ([array]
+   (let [*array* array]   ;; shadow *array* global
+     (get-array (player-input-random)))))

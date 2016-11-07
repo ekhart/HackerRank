@@ -114,9 +114,7 @@
     (is (false? (array-cell-empty? horizontal-win 0 0)))
 
     (is (false? (array-full? (player-input-random-array))))
+    (is (= 2 (player-input-random-array array-after-input) (count (remove nil? (flatten array-after-input)))))
 
-    )
-
-
-
+  )
 )
