@@ -113,6 +113,8 @@
     (is (true? (array-cell-empty? horizontal-win 1 0)))
     (is (false? (array-cell-empty? horizontal-win 0 0)))
 
+    (is (false? (array-full? (player-input-random-array))))
+
     )
 
 

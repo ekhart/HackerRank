@@ -156,3 +156,6 @@
 
 (defn array-cell-empty? [array row col]
   (nil? (array-cell array row col)))
+
+(defn player-input-random-array []
+  (get-array (player-input-random)))
