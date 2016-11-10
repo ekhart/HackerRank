@@ -45,6 +45,9 @@
             [nil nil nil]
             [nil nil nil]])
 
+(defn player-input-hash [row col]
+  {:row row :col col})
+
 ;; (def arry (make-array Integer/TYPE 3 3))
 ;; (for [_ (range 3)] (for [_ (range 3)] nil))
 
@@ -61,12 +64,11 @@
   (println))
 
 (defn chars-seq [string]
-  (filter (complement blank?) (split string #"")))
+  (remove blank? (split string #"")))
 
 (defn map-to-ints [coll]
   (letfn [(parseInt-at [place] (Integer/parseInt (place coll)))]
-    {:row (parseInt-at first)
-     :col (parseInt-at second)}))
+    (player-input-hash (parseInt-at first) (parseInt-at second))))
 
 (defn player-input []
   (print "Where to put your sign? ")
@@ -145,3 +147,18 @@
         inc-to (inc to)
         next-int (.nextInt random inc-to)]
     (+ next-int from)))
+
+(defn player-input-random []
+  (player-input-hash (random-int 0 2) (random-int 0 2)))
+
+(defn array-cell [array row col]
+  (nth (nth array row) col))
+
+(defn array-cell-empty? [array row col]
+  (nil? (array-cell array row col)))
+
+(defn player-input-random-array
+  ([] (player-input-random-array *array*))
+  ([array]
+   (let [*array* array]   ;; shadow *array* global
+     (get-array (player-input-random)))))
