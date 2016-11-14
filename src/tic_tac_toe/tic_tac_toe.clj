@@ -98,7 +98,7 @@
   ([array] (some #(every? player-char? %) array)))
 
 (defn transpose [array]
-  ;; http://stackoverflow.com/questions/8314789/rotate-a-list-of-list-matrix-in-clojure
+  ;; http"//stackoverflow.com/questions/8314789/rotate-a-list-of-list-matrix-in-clojure"
   (apply map list array))
 
 (defn vertical-line?
@@ -160,5 +160,5 @@
 (defn player-input-random-array
   ([] (player-input-random-array *array*))
   ([array]
-   (let [*array* array]   ;; shadow *array* global
-     (get-array (player-input-random)))))
+   (def *array* array)   ;; shadow *array* global
+   (get-array (player-input-random))))
