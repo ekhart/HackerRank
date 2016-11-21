@@ -10,9 +10,9 @@
 
 (defn __ [f coll]
   (reduce #(assoc-in %1 [(f %2)]
-                     (if-let [l (%1 %2)]
-                       [%2]
-                       (conj l %2)))
+                     (if-let [a (%1 (f %2))]
+                       (conj a %2)
+                       [%2]))
           {} coll))
 
 ;; (reduce conj [] [1 3 6 8])
@@ -22,6 +22,11 @@
 (assoc-in {1 [1]} [2] [2])
 
 
+;; (if-let [a ({} )]
+;;   (conj a %2)
+;;   [%2])
+
+
 (= (__ #(> % 5) [1 3 6 8]) {false [1 3], true [6 8]})
 
 (= (__ #(apply / %) [[1 2] [2 4] [4 6] [3 6]])
@@ -29,3 +34,33 @@
 
 (= (__ count [[1] [1 2] [3] [1 2 3] [2 3]])
    {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})
+
+
+;; 4Clojure copy paste
+(fn [f coll]
+  (reduce #(assoc-in %1 [(f %2)]
+                     (if-let [a (%1 (f %2))]
+                       (conj a %2)
+                       [%2])) {} coll))
+
+
+
+;; _artem_uv's solution:
+#(apply merge-with concat (map (fn [x] {(%1 x) [x]}) %2))
+
+;; _pcl's solution:
+(fn [f s]
+  (apply merge-with concat (map #(hash-map (f %1) [%1]) s)))
+
+;; aceeca1's solution:
+(comp #(zipmap (map ffirst %) (map (partial map peek) %)) (partial partition-by first) sort (fn [f x] (map-indexed #(vector (f %2) %1 %2) x)))
+
+;; adereth's solution:
+(fn [f s]
+  (reduce (fn [acc v]
+            (merge-with
+             concat
+             acc
+             {(f v) [v]}))
+          {}
+          s))
