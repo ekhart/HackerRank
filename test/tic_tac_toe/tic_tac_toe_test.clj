@@ -118,3 +118,7 @@
 
   )
 )
+
+(with-in-str "1 1"
+  (game-loop))
+

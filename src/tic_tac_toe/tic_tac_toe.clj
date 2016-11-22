@@ -14,14 +14,17 @@
 ;; 2 players: X, O
 ;; 1 plane 2d array with 9 places (3 x 3)
 
+
 ;; 1 random how start: x or o
-;; 2 show clear table
+
+;; game loop:
+;; 2 show current array
 ;; 3 get player input: where to put its char
 ;; 3.1 check if position is empty? -> if not print "error" and get next valid input from player
 ;; 3.2 place player char in selected position
 ;; 4 check if player win: check horizontal line, vertical, cross
 ;; 4.1 if win then print: player x|o win!
-;; 4.2 if there ar not empty
+;; 4.2 if there are not empty: end game - draw, tie
 
 ;; feature: change it to desktop app (use Java forms)
 
@@ -59,9 +62,11 @@
 (defn join-row [row]
   (join "|" (map #(if (nil? %) " " %) row)))
 
-(defn print-array [array]
-  (print (join "\n-----\n" (map join-row array)))
-  (println))
+(defn print-array 
+  ([] (print-array *array*))
+  ([array]
+   (print (join "\n-----\n" (map join-row array)))
+   (println)))
 
 (defn chars-seq [string]
   (remove blank? (split string #"")))
@@ -162,3 +167,11 @@
   ([array]
    (def *array* array)   ;; shadow *array* global
    (get-array (player-input-random))))
+
+(defn game-loop []
+  (while (not game-end?)
+    (print-array)
+    (def *array* (get-array (player-input)))
+    (def *current-player* (change-player))))
+
+; (game-loop)
