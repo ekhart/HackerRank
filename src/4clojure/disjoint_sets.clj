@@ -25,9 +25,20 @@
 
 (defn __ [s]
 ;;   (reduce check-sets s)) ;; cant use reduce like that
-  (map #(check-sets % s) s))
+  (every? false? (map #(check-sets % s) s)))
 
 (map-indexed println #{#{\U} #{\s} #{\e \R \E} #{\P \L} #{\.}})
+
+
+
+(defn check-sets [a s]
+    (> (count (remove #(empty? (clojure.set/intersection a %)) s)) 1))
+
+
+
+(defn __ [s]
+  (every? false? (map (fn [a] (> (count (remove #(empty? (clojure.set/intersection a %)) s)) 1)) s)))
+
 
 
 (= (__ #{#{\U} #{\s} #{\e \R \E} #{\P \L} #{\.}})
@@ -76,3 +87,40 @@
          #{(do) set contains? nil?}
          #{, , , #_, , empty?}})
    false)
+
+
+;; 4 clojure copy paste
+(fn [s] (every? false? (map (fn [a] (> (count (remove #(empty? (clojure.set/intersection a %)) s)) 1)) s)))
+
+
+
+;; _artem_uv's solution:
+#(= (count (reduce (fn [x y] (into x y)) %)) (count (reduce (fn [x y] (into x (seq y))) '() %)))
+
+;; _pcl's solution:
+(fn [s] (let [l (reduce into '() s)] (= (count l) (count (set l)))))
+
+;; aceeca1's solution:
+#(apply distinct? (apply concat %))
+
+;; adereth's solution:
+(fn [sos]
+  (reduce #(and %1 %2) true
+  (for [s1 sos
+        s2 sos]
+    (cond (= s1 s2) true
+          (and (some nil? s1) (some nil? s2)) false
+          (every? nil? (map s1 s2)) true
+          :else false))))
+
+;; 0x89's solution:
+(fn i [xxs]
+   (let [x (first xxs)
+         xs (rest xxs)]
+     (if-not x
+       true
+       (if (some identity (for [e x
+                                o xs]
+                            (contains? o e)))
+         false
+         (i xs)))))
