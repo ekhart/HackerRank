@@ -14,7 +14,7 @@
 
 (defn nex [coll]
   (concat [(first coll)]
-          (map-indexed #(+ %2 (if (>= (inc' %1) (count coll)) 0 (nth coll (inc' %1)))) coll)))
+          (map-indexed #(+' %2 (if (>= (inc' %1) (count coll)) 0 (nth coll (inc' %1)))) coll)))
 
 (nex [1 2 3])
 (nex [1 3 3 1])
@@ -55,3 +55,40 @@
 (= (take 2 (__ [3 1 2])) [[3 1 2] [3 4 3 2]])
 
 (= (take 100 (__ [2 4 2])) (rest (take 101 (__ [2 2]))))
+
+
+;; 4Clojure copy paste
+(fn __ [coll] (lazy-seq (cons coll (__ (concat [(first coll)] (map-indexed #(+' %2 (if (>= (inc' %1) (count coll)) 0 (nth coll (inc' %1)))) coll))))))
+
+
+;; _artem_uv's solution:
+#(iterate (fn [x] (concat [(first x)]
+                    (map +' x (rest x))
+                    [(last x)]))
+           %)
+
+;; _pcl's solution:
+(fn pt [xs]
+  (lazy-seq
+    (let
+      [r (map + (cons 0 xs) (concat xs [0]))]
+      (cons xs (pt r)))))
+
+;; aceeca1's solution:
+iterate (fn [x] (map (partial + 0N) (concat x [0]) (concat [0] x)))
+
+;; adereth's solution:
+(fn [row]
+  (let [next-row #(map +' (concat [0] %) (concat % [0]))]
+    (iterate next-row row)))
+
+;; 0x89's solution:
+#(iterate
+          (fn [[x & xs :as all]]
+            (flatten
+              [x
+               (map (partial apply +)
+                    (partition 2 1 all))
+               (last all)]))
+          %
+          )
