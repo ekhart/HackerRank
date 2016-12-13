@@ -14,7 +14,7 @@
 
 (defn nex [coll]
   (concat [(first coll)]
-          (map-indexed #(+ %2 (if (>= (inc %1) (count coll)) 0 (nth coll (inc %1)))) coll)))
+          (map-indexed #(+ %2 (if (>= (inc' %1) (count coll)) 0 (nth coll (inc' %1)))) coll)))
 
 (nex [1 2 3])
 (nex [1 3 3 1])
@@ -22,11 +22,31 @@
 (defn red [a b]
   (conj a b))
 
-(defn __
-  ([] [])
-  ([coll] (lazy-seq (conj coll (vec (concat [(first coll)]
-                            (map-indexed #(+ %2 (if (>= (inc %1) (count coll)) 0 (nth coll (inc %1)))) coll)))))))
+;; (defn __
+;;   ([] [])
+;;   ([coll]
+;;    (lazy-seq
+;;      (conj [coll]
+;;            (concat [(first coll)]
+;;            (__ (map-indexed #(+ %2 (if (>= (inc %1) (count coll)) 0 (nth coll (inc %1)))) coll)))))))
 
+;; (defn __ [coll]
+;;    (lazy-seq
+;;      (conj [coll]
+;;            (__ (concat [(first coll)]
+;;                        (map-indexed #(+ %2 (if (>= (inc' %1) (count coll)) 0 (nth coll (inc' %1))))
+;;                                     coll))))))
+
+
+(defn __ [coll]
+   (lazy-seq (cons coll (__ (nex coll)))))
+
+
+(defn positive-numbers
+	([] (positive-numbers 1))
+	([n] (lazy-seq (cons n (positive-numbers (inc n))))))
+
+(positive-numbers)
 
 (= (second (__ [2 3 2])) [2 5 5 2])
 
