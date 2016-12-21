@@ -13,10 +13,24 @@
   [n])
 
 
-(let [l (range 2 (* 5 5))
-      p (first l)]
-  (reduce #(conj (remove (fn [x] zero? (mod x p)) l) p))
+;; (let [l (range 2 (* 5 5))
+;;       p (first l)]
+;;   (reduce #(conj (remove (fn [x] zero? (mod x p)) l) p)))
 
+(loop [l (range 2 (* 5 5))
+       ll []
+       p 2]
+  (let [lll (sort (conj (remove #(zero? (mod % p)) l) p))]
+    (if p
+      (recur lll (next lll) (fnext lll))
+      lll)))
+
+(first [1])
+
+
+(let [l (range 2 (* 5 5))
+      p (second l)]
+  (conj (remove #(zero? (mod % p)) l) p))
 
 
 (= (__ 2) [2 3])
