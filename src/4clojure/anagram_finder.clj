@@ -94,7 +94,7 @@ a
 ;; others solutions
 ;; _artem_uv's solution:
 (fn [arg] (set (map set (filter #(> (count %) 1) (map val (group-by #(set %) arg))))))
-
+^
 ;; _pcl's solution:
 (fn [words]
   (set

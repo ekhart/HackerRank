@@ -15,3 +15,28 @@
 (= (__ conj [1] [2 3 4]) [[1] [1 2] [1 2 3] [1 2 3 4]])
 
 (= (last (__ * 2 [3 4 5])) (reduce * 2 [3 4 5]) 120)
+
+(reduce conj [1] [2 3 4])
+(reduce #(conj %1 %2) [1] [2 3 4])
+(reduce #([(conj %1 %2)]) [1] [2 3 4])
+
+(conj [1] (first [2 3 4]))
+
+(loop [l []
+       coll [2 3 4]]
+  (if (empty? coll)
+    l
+    (recur (conj l (first coll)) (rest coll))))
+
+(defn redu [f coll]
+  (loop [l []
+         c coll
+         r [[(first coll)]]]
+  (if (empty? c)
+    r
+    (recur (f l (first c)) 
+           (rest c)
+           (conj r l)))))
+;; (rest [2 3 4])
+
+(redu #(conj %1 %2) [1 2 3 4])
