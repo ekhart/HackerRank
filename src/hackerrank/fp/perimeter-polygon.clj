@@ -7,6 +7,11 @@
 ;; https://www.mathsisfun.com/algebra/distance-2-points.html
 
 (def point vector)
+
+(defn point
+  ([v] (vector (first v) (second v)))
+  ([a b] (vector a b)))
+
 (def x first)
 (def y second)
 ;; https://clojuredocs.org/clojure.core/memfn
@@ -28,12 +33,34 @@
 
 (distance (point 0 0) (point 0 1)) ; => 1
 
+(point [0 0])
+
 (def input [[0 0]
             [0 1]
             [1 1]
             [1 0]])
 
-;; (reduce #(+ %1 (distance )))
+(drop 1 (take 5 (cycle input)))
+(drop 1 input)
+
+;; (partition 2 (interleave input (drop 1 (take 5 (cycle input)))))
+;; main solution
+(->> (cycle input)
+     (take 5)
+     (drop 1)
+     (interleave input)
+     (partition 2)
+     (reduce #(+ %1 (distance (first %2) (second %2))) 0))
+
+(defn solution [input]
+  (->> (cycle input)
+       (take 5)
+       (drop 1)
+       (interleave input)
+       (partition 2)
+       (reduce #(+ %1 (distance (first %2) (second %2))) 0)))
+
+(reduce #(+ %1 (distance % )) (take 5 (cycle input)))
 
 (def input 
 "4\n
@@ -51,5 +78,8 @@
                          (take-nth 2 (vec (read-line))))]
         (println numbers)))))
 
-(map #(Integer/parseInt (str %)) (take-nth 2 (vec "1 0")))
+;; todo: gather input in list 
+;; then call on it (solution input)
+
+;; (map #(Integer/parseInt (str %)) (take-nth 2 (vec "1 0")))
 
