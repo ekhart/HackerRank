@@ -34,3 +34,22 @@
             [1 0]])
 
 ;; (reduce #(+ %1 (distance )))
+
+(def input 
+"4\n
+0 0\n
+0 1\n
+1 1\n
+1 0")
+
+(with-in-str input
+  (let [n (Integer/parseInt (read-line))]
+    (println n)
+    (dotimes [_ n]
+      (let [line (read-line)
+            numbers (map #(Integer/parseInt (str %)) 
+                         (take-nth 2 (vec (read-line))))]
+        (println numbers)))))
+
+(map #(Integer/parseInt (str %)) (take-nth 2 (vec "1 0")))
+
