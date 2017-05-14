@@ -78,9 +78,16 @@
                          (take-nth 2 (vec (read-line))))]
         (println numbers)))))
 
+(defn parseInt [n]
+  (Integer/parseInt (str n)))
+
+(defn parseInt-at [f coll]
+  (parseInt (f coll)))
+
 ;; https://clojuredocs.org/clojure.core/line-seq
 (import '(java.io BufferedReader StringReader))
 (line-seq (BufferedReader. (StringReader. input)))
+
 (->> input
      StringReader.
      BufferedReader.
@@ -89,7 +96,12 @@
      (filter #(pos? (count %)))
      (map #(vec %))
      (map #(take-nth 2 %))
-     (map #(Integer/parseInt (str %))))
+     (map #(vector (parseInt-at first %) (parseInt-at second %)))
+     solution)
+
+
+
+
 
 (count "1")
 
