@@ -60,7 +60,7 @@
        (partition 2)
        (reduce #(+ %1 (distance (first %2) (second %2))) 0)))
 
-(reduce #(+ %1 (distance % )) (take 5 (cycle input)))
+;; (reduce #(+ %1 (distance % )) (take 5 (cycle input)))
 
 (def input 
 "4\n
@@ -77,6 +77,21 @@
             numbers (map #(Integer/parseInt (str %)) 
                          (take-nth 2 (vec (read-line))))]
         (println numbers)))))
+
+;; https://clojuredocs.org/clojure.core/line-seq
+(import '(java.io BufferedReader StringReader))
+(line-seq (BufferedReader. (StringReader. input)))
+(->> input
+     StringReader.
+     BufferedReader.
+     line-seq
+     (drop 1)
+     (filter #(pos? (count %)))
+     (map #(vec %))
+     (map #(take-nth 2 %))
+     (map #(Integer/parseInt (str %))))
+
+(count "1")
 
 ;; todo: gather input in list 
 ;; then call on it (solution input)

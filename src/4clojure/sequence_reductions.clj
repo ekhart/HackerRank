@@ -31,7 +31,7 @@
 (defn redu [f coll]
   (loop [l []
          c coll
-         r [[(first coll)]]]
+         r []]
   (if (empty? c)
     r
     (recur (f l (first c)) 
