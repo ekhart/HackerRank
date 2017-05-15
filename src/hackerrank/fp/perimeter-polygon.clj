@@ -110,3 +110,49 @@
 
 ;; (map #(Integer/parseInt (str %)) (take-nth 2 (vec "1 0")))
 
+
+;; almost working hackerrank copy paste
+; Enter your code here. Read input from STDIN. Print output to STDOUT
+; Enter your code here. Read input from STDIN. Print output to STDOUT
+(def point vector)
+
+(defn point
+  ([v] (vector (first v) (second v)))
+  ([a b] (vector a b)))
+
+(def x first)
+(def y second)
+
+(defn square [n]
+  (* n n))
+
+(defn distance [a b]
+  (Math/sqrt (+ (square (- (x a) (x b)))
+                (square (- (y a) (y b))))))
+
+;; main solution
+(defn solution [input]
+  (->> (cycle input)
+       (take 5)
+       (drop 1)
+       (interleave input)
+       (partition 2)
+       (reduce #(+ %1 (distance (first %2) (second %2))) 0)))
+
+(defn parseInt [n]
+  (Integer/parseInt (str n)))
+
+(defn parseInt-at [f coll]
+  (parseInt (f coll)))
+
+(import '(java.io BufferedReader StringReader))
+
+(print (->> *in*
+     BufferedReader.
+     line-seq
+     (drop 1)
+     (filter #(pos? (count %)))
+     (map #(vec %))
+     (map #(take-nth 2 %))
+     (map #(vector (parseInt-at first %) (parseInt-at second %)))
+     solution))
