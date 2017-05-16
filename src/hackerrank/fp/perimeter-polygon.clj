@@ -62,12 +62,18 @@
 
 ;; (reduce #(+ %1 (distance % )) (take 5 (cycle input)))
 
-(def input 
-"4\n
-0 0\n
-0 1\n
-1 1\n
-1 0")
+;; (def input 
+;; "4\n
+;; 0 0\n
+;; 0 1\n
+;; 1 1\n
+;; 1 0")
+
+(def input
+"3\n
+1043 770\n
+551 990\n
+681 463\n")
 
 (with-in-str input
   (let [n (Integer/parseInt (read-line))]
@@ -95,11 +101,16 @@
      (drop 1)
      (filter #(pos? (count %)))
      (map #(vec %))
-     (map #(take-nth 2 %))
+     (map #(partition-by (partial = \space) %))
+     (mapcat #(remove (partial = [\space]) %))
+     (map #(apply str %))
+     (partition 2)
      (map #(vector (parseInt-at first %) (parseInt-at second %)))
      solution)
 
-
+(->> (partition-by #(= % \space) [\1 \0 \4 \3 \space \7 \7 \0])
+     (remove #(= % [\space]))
+     (map #(apply str %)))
 
 
 
@@ -112,7 +123,6 @@
 
 
 ;; almost working hackerrank copy paste
-; Enter your code here. Read input from STDIN. Print output to STDOUT
 ; Enter your code here. Read input from STDIN. Print output to STDOUT
 (def point vector)
 
@@ -148,11 +158,15 @@
 (import '(java.io BufferedReader StringReader))
 
 (print (->> *in*
-     BufferedReader.
-     line-seq
-     (drop 1)
-     (filter #(pos? (count %)))
-     (map #(vec %))
-     (map #(take-nth 2 %))
-     (map #(vector (parseInt-at first %) (parseInt-at second %)))
-     solution))
+            BufferedReader.
+            line-seq
+            (drop 1)
+            (filter #(pos? (count %)))
+            (map #(vec %))
+            (map #(partition-by (partial = \space) %))
+            (mapcat #(remove (partial = [\space]) %))
+            (map #(apply str %))
+            (partition 2)
+            (map #(vector (parseInt-at first %) (parseInt-at second %)))
+            solution))
+
