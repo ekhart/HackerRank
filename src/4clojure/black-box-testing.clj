@@ -39,3 +39,44 @@
 (= :set (__ #{10 (rand-int 5)}))
 
 (= [:map :set :vector :list] (map __ [{} #{} [] ()]))
+
+
+;; passed!
+(fn __ [a]
+  (let [c (subs (str a) 0 1)]
+    (cond (= c "#") :set
+          (= c "{") :map
+          (= c "[") :vector
+          (= c "(") :list
+          :else :list)))
+
+;; Code Golf Score: 95
+
+;; _artem_uv's solution:
+;; #(let [r (str %)]
+;;    (if (.contains r "#")
+;;      :set
+;;        (if (.contains r "{")
+;;          :map
+;;          (if (.contains r "[")
+;;            :vector
+;;            :list))))
+
+;; _pcl's solution:
+;; #(if
+;;   (and (associative? %) (< 1 (count (flatten (list (last (seq (assoc % 0 1))))))) ) :map
+;;   (let [c (conj % :a :b :c)]
+;;     (cond 
+;;       (= (take-last 3 c) [:a :b :c]) :vector
+;;       (= (take      3 c) [:c :b :a]) :list
+;;       true :set)))
+
+;; aceeca1's solution:
+;; (comp #(cond (= % {}) :map (= % #{}) :set (= (conj % 1 2) [1 2]) :vector true :list) empty)
+
+;; adereth's solution:
+;; #(condp = (nth (str %) 0)
+;;    \{ :map
+;;    \c :list
+;;    \[ :vector
+;;    \# :set)
